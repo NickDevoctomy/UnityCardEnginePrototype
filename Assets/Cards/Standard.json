@@ -14,7 +14,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Ace"
+					"Value": "1"
 				}
 			]
 		},
@@ -144,7 +144,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Jack"
+					"Value": "11"
 				}
 			]
 		},
@@ -157,7 +157,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Queen"
+					"Value": "12"
 				}
 			]
 		},
@@ -170,7 +170,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "King"
+					"Value": "13"
 				}
 			]
 		},
@@ -183,7 +183,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Ace"
+					"Value": "1"
 				}
 			]
 		},
@@ -313,7 +313,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Jack"
+					"Value": "11"
 				}
 			]
 		},
@@ -326,7 +326,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Queen"
+					"Value": "12"
 				}
 			]
 		},
@@ -339,7 +339,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "King"
+					"Value": "13"
 				}
 			]
 		},
@@ -352,7 +352,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Ace"
+					"Value": "1"
 				}
 			]
 		},
@@ -482,7 +482,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Jack"
+					"Value": "11"
 				}
 			]
 		},
@@ -495,7 +495,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Queen"
+					"Value": "12"
 				}
 			]
 		},
@@ -508,7 +508,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "King"
+					"Value": "13"
 				}
 			]
 		},
@@ -521,7 +521,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Ace"
+					"Value": "1"
 				}
 			]
 		},
@@ -651,7 +651,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Jack"
+					"Value": "11"
 				}
 			]
 		},
@@ -664,7 +664,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "Queen"
+					"Value": "12"
 				}
 			]
 		},
@@ -677,7 +677,7 @@
 				},
 				{
 					"Name": "Value",
-					"Value": "King"
+					"Value": "13"
 				}
 			]
 		}

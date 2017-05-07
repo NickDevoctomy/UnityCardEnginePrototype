@@ -15,15 +15,19 @@ namespace Assets.Scripts
 
         public DeckCard Card { get; private set; }
 
+        public Boolean IsDouble { get; private set; }
+
         #endregion
 
         #region constructor / destructor
 
         public SpreadAreaCardClickedEventArgs(SpreadArea iSpreadArea,
-            DeckCard iCard)
+            DeckCard iCard,
+            Boolean iIsDouble)
         {
             SpreadArea = iSpreadArea;
             Card = iCard;
+            IsDouble = iIsDouble;
         }
 
         #endregion

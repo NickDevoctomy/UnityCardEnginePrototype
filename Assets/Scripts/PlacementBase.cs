@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Assets.Scripts.Extensions;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -58,6 +60,21 @@ namespace Assets.Scripts
             }
         }
 
+        public DeckCard TopCard
+        {
+            get
+            {
+                if(Group.Stack.Count > 0)
+                {
+                    return (Group.Stack[Group.Stack.Count - 1]);
+                }
+                else
+                {
+                    return (null);
+                }
+            }
+        }
+
         #endregion
 
         #region constructor / destructor
@@ -81,7 +98,7 @@ namespace Assets.Scripts
             Vector3 iPosition,
             DeckCard.CardFacing iFacing = DeckCard.CardFacing.Down)
         {
-            //Do nothing
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -105,6 +122,55 @@ namespace Assets.Scripts
                 {
                     Group.Stack[pIntIndex].Flip();
                 }
+            }
+        }
+
+        public virtual Vector3 PrepareNextCardPos()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MoveTopCardToPlacement(String iStackPoint,
+            Boolean iFlip)
+        {
+            if (Manager.StackPoints.ContainsKey(iStackPoint))
+            {
+                MoveTopCardToPlacement(Manager.StackPoints[iStackPoint], iFlip);
+            }
+            else
+            {
+                throw new KeyNotFoundException();
+            }
+        }
+
+        public void MoveTopCardToPlacement(PlacementBase iPlacement,
+            Boolean iFlip)
+        {
+            if (Group != null && Group.Stack.Count > 0)
+            {
+                DeckCard pDCdCard = Group.Stack[Group.Stack.Count - 1];
+
+                Debug.Log(String.Format("Moving card '{0}' from '{1}' to '{2}'.", pDCdCard.Tags.ToTagString(), Name, iPlacement.Name));
+
+                Vector3 pVe3StartPos = pDCdCard.GameObjectRef.transform.position;
+                Group.Stack.RemoveAt(Group.Stack.Count - 1);
+                Vector3 pVe3EndPos = iPlacement.PrepareNextCardPos();
+                iPlacement.Group.Stack.Add(pDCdCard);
+
+                List<MovementCreator.PredefinedMovements> pLisMovements = new List<MovementCreator.PredefinedMovements>();
+                pLisMovements.Add(MovementCreator.PredefinedMovements.Start);
+                pLisMovements.Add(MovementCreator.PredefinedMovements.CeilingCentrePoint);
+                if(iFlip) pLisMovements.Add(MovementCreator.PredefinedMovements.Flip);
+                pLisMovements.Add(MovementCreator.PredefinedMovements.End);
+
+                List<Waypoint> pLisMovementSets = MovementCreator.CreateWaypoints(pDCdCard,
+                    pVe3StartPos,
+                    pVe3EndPos,
+                    pLisMovements.ToArray());
+
+                pDCdCard.AddWaypoints(pLisMovementSets);
+
+                pDCdCard.StartTween(true);
             }
         }
 

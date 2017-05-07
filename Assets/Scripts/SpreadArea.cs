@@ -239,7 +239,7 @@ namespace Assets.Scripts
 
         #region public methods
 
-        public Vector3 PrepareNextCardPos()
+        public override Vector3 PrepareNextCardPos()
         {
             switch (Orientation)
             {

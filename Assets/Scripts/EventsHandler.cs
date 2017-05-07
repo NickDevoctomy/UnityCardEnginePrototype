@@ -35,7 +35,7 @@ namespace Assets.Scripts
 
         #region public methods
 
-        public void CardOnMouseDown(DeckCard iCard)
+        public void SingleClick(DeckCard iCard)
         {
             DeckGroup pDGpGroup = iCard.Deck.Manager.GetDeckCardGroup(iCard);
             if (pDGpGroup != null)
@@ -46,14 +46,39 @@ namespace Assets.Scripts
                     {
                         if(StackPointClicked != null)
                         {
-                            StackPointClicked(this, new StackPointClickedEventArgs((StackPoint)pDGpGroup.Placement, iCard));
+                            StackPointClicked(this, new StackPointClickedEventArgs((StackPoint)pDGpGroup.Placement, iCard, false));
                         }
                     }
                     else if(pDGpGroup.Placement.GetType() == typeof(SpreadArea))
                     {
                         if(SpreadCardClicked != null)
                         {
-                            SpreadCardClicked(this, new SpreadAreaCardClickedEventArgs((SpreadArea)pDGpGroup.Placement, iCard));
+                            SpreadCardClicked(this, new SpreadAreaCardClickedEventArgs((SpreadArea)pDGpGroup.Placement, iCard, false));
+                        }
+                    }
+                }
+            }
+        }
+
+        public void DoubleClick(DeckCard iCard)
+        {
+            DeckGroup pDGpGroup = iCard.Deck.Manager.GetDeckCardGroup(iCard);
+            if (pDGpGroup != null)
+            {
+                if (pDGpGroup.Placement != null)
+                {
+                    if (pDGpGroup.Placement.GetType() == typeof(StackPoint))
+                    {
+                        if (StackPointClicked != null)
+                        {
+                            StackPointClicked(this, new StackPointClickedEventArgs((StackPoint)pDGpGroup.Placement, iCard, true));
+                        }
+                    }
+                    else if (pDGpGroup.Placement.GetType() == typeof(SpreadArea))
+                    {
+                        if (SpreadCardClicked != null)
+                        {
+                            SpreadCardClicked(this, new SpreadAreaCardClickedEventArgs((SpreadArea)pDGpGroup.Placement, iCard, true));
                         }
                     }
                 }

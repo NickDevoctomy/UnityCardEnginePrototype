@@ -16,6 +16,7 @@ public class CardGame : MonoBehaviour
 
     private CardManager cCMrManager;
     private DeckCard cDCdSelectedCard;
+    private List<PlacementBase> cLisAllPlacements;
 
     #endregion
 
@@ -69,8 +70,12 @@ public class CardGame : MonoBehaviour
         cCMrManager.CreateDeckGroup("Standard", "Spread5", 5);
         cCMrManager.CreateDeckGroup("Standard", "Spread6", 6);
         cCMrManager.CreateDeckGroup("Standard", "Spread7", 7);
-        cCMrManager.CreateDeckGroup("Standard", "StartStack");
-        cCMrManager.CreateDeckGroup("Standard", "FlippedStack");
+        cCMrManager.CreateDeckGroup("Standard", "StartStack", -1);
+        cCMrManager.CreateDeckGroup("Standard", "FlippedStack", 0);
+        cCMrManager.CreateDeckGroup("Standard", "SuitStack1", 0);
+        cCMrManager.CreateDeckGroup("Standard", "SuitStack2", 0);
+        cCMrManager.CreateDeckGroup("Standard", "SuitStack3", 0);
+        cCMrManager.CreateDeckGroup("Standard", "SuitStack4", 0);
 
         cCMrManager.StackPoints["StartStack"].PlaceGroup(cCMrManager.Groups["Standard.StartStack"], DeckCard.CardFacing.Down);
         cCMrManager.StackPoints["FlippedStack"].PlaceGroup(cCMrManager.Groups["Standard.FlippedStack"], DeckCard.CardFacing.Down);
@@ -81,6 +86,10 @@ public class CardGame : MonoBehaviour
         cCMrManager.SpreadAreas["Spread5"].PlaceGroup(cCMrManager.Groups["Standard.Spread5"], DeckCard.CardFacing.Down);
         cCMrManager.SpreadAreas["Spread6"].PlaceGroup(cCMrManager.Groups["Standard.Spread6"], DeckCard.CardFacing.Down);
         cCMrManager.SpreadAreas["Spread7"].PlaceGroup(cCMrManager.Groups["Standard.Spread7"], DeckCard.CardFacing.Down);
+        cCMrManager.StackPoints["SuitStack1"].PlaceGroup(cCMrManager.Groups["Standard.SuitStack1"], DeckCard.CardFacing.Up);
+        cCMrManager.StackPoints["SuitStack2"].PlaceGroup(cCMrManager.Groups["Standard.SuitStack2"], DeckCard.CardFacing.Up);
+        cCMrManager.StackPoints["SuitStack3"].PlaceGroup(cCMrManager.Groups["Standard.SuitStack3"], DeckCard.CardFacing.Up);
+        cCMrManager.StackPoints["SuitStack4"].PlaceGroup(cCMrManager.Groups["Standard.SuitStack4"], DeckCard.CardFacing.Up);
 
         //flip cards that need flipping
         cCMrManager.FlipToNCards(1, cCMrManager.SpreadAreas["Spread1"],
@@ -90,6 +99,19 @@ public class CardGame : MonoBehaviour
             cCMrManager.SpreadAreas["Spread5"],
             cCMrManager.SpreadAreas["Spread6"],
             cCMrManager.SpreadAreas["Spread7"]);
+
+        cLisAllPlacements = new List<PlacementBase>();
+        cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack1"]);
+        cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack2"]);
+        cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack3"]);
+        cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack4"]);
+        cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread1"]);
+        cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread2"]);
+        cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread3"]);
+        cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread4"]);
+        cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread5"]);
+        cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread6"]);
+        cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread7"]);
     }
 
     void Update()
@@ -114,6 +136,114 @@ public class CardGame : MonoBehaviour
         }
     }
 
+    private void AutoPlayCard(PlacementBase iOrigin,
+        DeckCard iCard)
+    {
+        if(iOrigin.Name == "FlippedStack")
+        {
+            foreach(PlacementBase curPlacement in cLisAllPlacements)
+            {
+                DeckCard pDCdPlacementTopCard = curPlacement.TopCard;
+                if(pDCdPlacementTopCard != null)
+                {
+                    if(pDCdPlacementTopCard.Facing == DeckCard.CardFacing.Up)
+                    {
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    //This placement is currently empty
+                    if (curPlacement.Name.StartsWith("SuitStack"))
+                    {
+                        //Only move to stack if it's an ace
+                        if(Int32.Parse(iCard.TagsByName["Value"].Value) == 1)
+                        {
+                            iOrigin.MoveTopCardToPlacement(curPlacement, false);
+                            break;
+                        }
+                    }
+                    else if (curPlacement.Name.StartsWith("Spread"))
+                    {
+                        //Only move over if it's a king
+                        if (Int32.Parse(iCard.TagsByName["Value"].Value) == 13)
+                        {
+                            iOrigin.MoveTopCardToPlacement(curPlacement, false);
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(iOrigin.Name.StartsWith("SuitStack"))
+            {
+
+            }
+            else if(iOrigin.Name.StartsWith("Spread"))
+            {
+                foreach (PlacementBase curPlacement in cLisAllPlacements)
+                {
+                    DeckCard pDCdPlacementTopCard = curPlacement.TopCard;
+                    if (pDCdPlacementTopCard != null)
+                    {
+                        if (pDCdPlacementTopCard.Facing == DeckCard.CardFacing.Up)
+                        {
+
+                        }
+                        else
+                        {
+
+                        }
+                    }
+                    else
+                    {
+                        //This placement is currently empty
+                        if (curPlacement.Name.StartsWith("SuitStack"))
+                        {
+                            //Only move to stack if it's an ace
+                            if (Int32.Parse(iCard.TagsByName["Value"].Value) == 1)
+                            {
+                                iOrigin.MoveTopCardToPlacement(curPlacement, false);
+                                break;
+                            }
+                        }
+                        else if (curPlacement.Name.StartsWith("Spread"))
+                        {
+                            //Only move over if it's a king
+                            if (Int32.Parse(iCard.TagsByName["Value"].Value) == 13)
+                            {
+                                iOrigin.MoveTopCardToPlacement(curPlacement, false);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public Boolean IsNextUp(DeckCard iCard, 
+        DeckCard iNextCard)
+    {
+        Int32 pIntCurCardValue = Int32.Parse(iCard.TagsByName["Value"].Value);
+        Int32 pIntNextCardValue = Int32.Parse(iNextCard.TagsByName["Value"].Value);
+        return (pIntNextCardValue == (pIntCurCardValue + 1));
+    }
+
+    public Boolean IsNextDown(DeckCard iCard,
+        DeckCard iNextCard)
+    {
+        Int32 pIntCurCardValue = Int32.Parse(iCard.TagsByName["Value"].Value);
+        Int32 pIntNextCardValue = Int32.Parse(iNextCard.TagsByName["Value"].Value);
+        return (pIntNextCardValue == (pIntCurCardValue - 1));
+    }
+
     #endregion
 
     #region object events
@@ -127,7 +257,13 @@ public class CardGame : MonoBehaviour
             {
                 e.Card.Flip();
             }
-            SelectCard(e.Card);
+            else
+            {
+                if(e.IsDouble)
+                {
+                    AutoPlayCard(e.SpreadArea, e.Card);
+                }
+            }
         }
     }
 
@@ -139,14 +275,16 @@ public class CardGame : MonoBehaviour
                 {
                     if (e.Card.Facing == DeckCard.CardFacing.Down)
                     {
-                        //e.Card.Flip();
-                        e.StackPoint.MoveTopCardToStackPoint("FlippedStack", true);
-                        SelectCard(e.Card);
+                        e.StackPoint.MoveTopCardToPlacement("FlippedStack", true);
                     }
                     break;
                 }
             case "FlippedStack":
                 {
+                    if (e.IsDouble)
+                    {
+                        AutoPlayCard(e.StackPoint, e.Card);
+                    }
                     break;
                 }
         }
