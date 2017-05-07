@@ -28,9 +28,12 @@ namespace Assets.Scripts
         private Vector3 NextCardPos()
         {
             Vector3 pVecCurPosition = new Vector3(Position.x, Position.y, Position.z);
-            for (Int32 curCard = 0; curCard < Group.Stack.Count; curCard++)
+            if(Group.Stack.Count > 0)
             {
-                pVecCurPosition = new Vector3(pVecCurPosition.x, pVecCurPosition.y + Group.Stack[curCard].Thickness + 0.03f, pVecCurPosition.z);
+                for (Int32 curCard = 0; curCard < Group.Stack.Count; curCard++)
+                {
+                    pVecCurPosition = new Vector3(pVecCurPosition.x, pVecCurPosition.y + Group.Stack[curCard].Thickness + 0.03f, pVecCurPosition.z);
+                }
             }
             return (pVecCurPosition);
         }

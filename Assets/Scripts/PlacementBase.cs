@@ -148,28 +148,35 @@ namespace Assets.Scripts
         {
             if (Group != null && Group.Stack.Count > 0)
             {
+                //Get top card and remove it from source stack
                 DeckCard pDCdCard = Group.Stack[Group.Stack.Count - 1];
+                Group.Stack.RemoveAt(Group.Stack.Count - 1);
 
                 Debug.Log(String.Format("Moving card '{0}' from '{1}' to '{2}'.", pDCdCard.Tags.ToTagString(), Name, iPlacement.Name));
 
+                //Get start and end pos and add it to the destination stack
                 Vector3 pVe3StartPos = pDCdCard.GameObjectRef.transform.position;
-                Group.Stack.RemoveAt(Group.Stack.Count - 1);
                 Vector3 pVe3EndPos = iPlacement.PrepareNextCardPos();
                 iPlacement.Group.Stack.Add(pDCdCard);
 
+                //Now let's animate from start placement to end placement
+                //First we need to create a list of predefined movements
                 List<MovementCreator.PredefinedMovements> pLisMovements = new List<MovementCreator.PredefinedMovements>();
                 pLisMovements.Add(MovementCreator.PredefinedMovements.Start);
                 pLisMovements.Add(MovementCreator.PredefinedMovements.CeilingCentrePoint);
                 if(iFlip) pLisMovements.Add(MovementCreator.PredefinedMovements.Flip);
                 pLisMovements.Add(MovementCreator.PredefinedMovements.End);
 
+                //Create our waypoints
                 List<Waypoint> pLisMovementSets = MovementCreator.CreateWaypoints(pDCdCard,
                     pVe3StartPos,
                     pVe3EndPos,
                     pLisMovements.ToArray());
 
+                //Add waypoints to the card
                 pDCdCard.AddWaypoints(pLisMovementSets);
 
+                //Start animating the card
                 pDCdCard.StartTween(true);
             }
         }

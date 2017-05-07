@@ -46,23 +46,6 @@ public class CardGame : MonoBehaviour
         cCMrManager.CreateSpreadArea("Spread6", new Vector2(19.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
         cCMrManager.CreateSpreadArea("Spread7", new Vector2(29.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
 
-        //Centred
-        //cCMrManager.CreateStackPoint("StartStack", new Vector2(-30.45f, 20));
-        //cCMrManager.CreateStackPoint("FlippedStack", new Vector2(-20.45f, 20));
-
-        //cCMrManager.CreateStackPoint("SuitStack1", new Vector2(-0.45f, 20));
-        //cCMrManager.CreateStackPoint("SuitStack2", new Vector2(9.55f, 20));
-        //cCMrManager.CreateStackPoint("SuitStack3", new Vector2(19.55f, 20));
-        //cCMrManager.CreateStackPoint("SuitStack4", new Vector2(29.55f, 20));
-
-        //cCMrManager.CreateSpreadArea("Spread1", new Vector2(-30.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread2", new Vector2(-20.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread3", new Vector2(-10.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread4", new Vector2(-0.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread5", new Vector2(9.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread6", new Vector2(19.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread7", new Vector2(29.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-
         cCMrManager.CreateDeckGroup("Standard", "Spread1", 1);
         cCMrManager.CreateDeckGroup("Standard", "Spread2", 2);
         cCMrManager.CreateDeckGroup("Standard", "Spread3", 3);
