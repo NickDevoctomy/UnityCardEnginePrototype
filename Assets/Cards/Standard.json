@@ -1,0 +1,685 @@
+{
+	"Info":{
+		"Name": "Standard",
+		"Description": "A standard 52 card deck.",
+		"BackImageFile": "Images\\back.png",
+	},
+	"Cards":[
+		{
+			"FrontImageFile": "Images\\ace_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "Ace"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\2_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "2"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\3_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "3"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\4_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "4"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\5_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "5"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\6_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "6"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\7_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "7"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\8_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "8"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\9_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "9"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\10_of_clubs.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "10"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\jack_of_clubs2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "Jack"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\queen_of_clubs2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "Queen"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\king_of_clubs2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Clubs"
+				},
+				{
+					"Name": "Value",
+					"Value": "King"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\ace_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "Ace"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\2_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "2"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\3_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "3"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\4_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "4"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\5_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "5"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\6_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "6"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\7_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "7"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\8_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "8"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\9_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "9"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\10_of_diamonds.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "10"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\jack_of_diamonds2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "Jack"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\queen_of_diamonds2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "Queen"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\king_of_diamonds2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Diamonds"
+				},
+				{
+					"Name": "Value",
+					"Value": "King"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\ace_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "Ace"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\2_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "2"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\3_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "3"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\4_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "4"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\5_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "5"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\6_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "6"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\7_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "7"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\8_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "8"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\9_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "9"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\10_of_spades.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "10"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\jack_of_spades2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "Jack"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\queen_of_spades2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "Queen"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\king_of_spades2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Spades"
+				},
+				{
+					"Name": "Value",
+					"Value": "King"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\ace_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "Ace"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\2_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "2"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\3_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "3"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\4_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "4"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\5_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "5"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\6_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "6"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\7_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "7"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\8_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "8"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\9_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "9"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\10_of_hearts.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "10"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\jack_of_hearts2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "Jack"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\queen_of_hearts2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "Queen"
+				}
+			]
+		},
+		{
+			"FrontImageFile": "Images\\king_of_hearts2.png",
+			"Tags":[
+				{
+					"Name": "Suit",
+					"Value": "Hearts"
+				},
+				{
+					"Name": "Value",
+					"Value": "King"
+				}
+			]
+		}
+	]
+}
