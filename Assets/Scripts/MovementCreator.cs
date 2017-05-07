@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Extensions;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,20 +8,6 @@ namespace Assets.Scripts
 
     public static class MovementCreator
     {
-
-        #region public structs
-
-        //public class MovementSet
-        //{
-
-        //    public string Name;
-        //    public Vector3 Position;
-        //    public Vector3 Rotation;
-        //    public float PercentPerSecond;
-
-        //}
-
-        #endregion
 
         #region public enums
 
@@ -35,19 +22,21 @@ namespace Assets.Scripts
 
         #endregion
 
-        public static List<MovementSet> CreateMovementSets(DeckCard iCard,
+        public static List<Waypoint> CreateWaypoints(DeckCard iCard,
             Vector3 iStart,
             Vector3 iEnd,
             params PredefinedMovements[] iMovements)
         {
-            List<MovementSet> pLisMovementSets = new List<MovementSet>();
+            String pStrGroupID = Guid.NewGuid().ToString();
+            List<Waypoint> pLisMovementSets = new List<Waypoint>();
             foreach (PredefinedMovements curMovement in iMovements)
             {
                 switch (curMovement)
                 {
                     case PredefinedMovements.Start:
                         {
-                            MovementSet pMStSet = new MovementSet("Start",
+                            Waypoint pMStSet = new Waypoint(pStrGroupID,
+                                "Start",
                                 iStart,
                                 null);
 
@@ -90,7 +79,8 @@ namespace Assets.Scripts
 
                             Vector3 pVe3Waypoint = new Vector3(pFltCentrePointX, 10.0f, pFltCentrePointZ);
 
-                            MovementSet pMStSet = new MovementSet("MoveToCentre",
+                            Waypoint pMStSet = new Waypoint(pStrGroupID,
+                                "MoveToCentre",
                                 pVe3Waypoint,
                                 null,
                                 2.0f,
@@ -101,7 +91,8 @@ namespace Assets.Scripts
                         }
                     case PredefinedMovements.Flip:
                         {
-                            MovementSet pMStSet = new MovementSet("Flip",
+                            Waypoint pMStSet = new Waypoint(pStrGroupID,
+                                "Flip",
                                 pLisMovementSets[pLisMovementSets.Count - 1].Position,
                                 iCard.Facing == DeckCard.CardFacing.Up ? DeckCard.CardFacing.Down.ToVector3() : DeckCard.CardFacing.Up.ToVector3(),
                                 2.0f,
@@ -112,7 +103,8 @@ namespace Assets.Scripts
                         }
                     case PredefinedMovements.End:
                         {
-                            MovementSet pMStSet = new MovementSet("MoveToEnd",
+                            Waypoint pMStSet = new Waypoint(pStrGroupID,
+                                "MoveToEnd",
                                 iEnd,
                                 null,
                                 2.0f,

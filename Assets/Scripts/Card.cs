@@ -25,8 +25,7 @@ public class Card : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        DeckCard pDCdCard = Deck.CardsByGameObject[this.gameObject];
-        pDCdCard.DrawPath();
+        //DeckCard pDCdCard = Deck.CardsByGameObject[this.gameObject];
     }
 
     #endregion

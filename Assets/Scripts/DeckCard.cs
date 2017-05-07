@@ -24,13 +24,11 @@ public class DeckCard
     #region private objects
 
     private Deck cDekDeck;
-    private ConcurrentQueue<MovementSet> cQueMovementSets;
-    private Stack<MovementSet> cStaMovementSetHistory;
+    private ConcurrentQueue<Waypoint> cQueWaypoints;
     private DateTime cDteCurrentStartedAt;
-    private MovementSet cMSeCurrentMovementSet;
+    private Waypoint cWayCurrentWaypoint;
     private Vector3 pVe3LastPosition;
     private float cFltCurrentPathPercent = 0.0f;
-    private float cFltPathPercentPerSecond = 0.5f;
     private bool cBlnIsTweening = false;
 
     #endregion
@@ -100,11 +98,11 @@ public class DeckCard
     }
 
     [JsonIgnore]
-    public ConcurrentQueue<MovementSet> MovementSets
+    public ConcurrentQueue<Waypoint> MovementSets
     {
         get
         {
-            return (cQueMovementSets);
+            return (cQueWaypoints);
         }
     }
 
@@ -123,8 +121,7 @@ public class DeckCard
 
     public DeckCard()
     {
-        cQueMovementSets = new ConcurrentQueue<MovementSet>();
-        cStaMovementSetHistory = new Stack<MovementSet>();
+        cQueWaypoints = new ConcurrentQueue<Waypoint>();
     }
 
     #endregion
@@ -133,13 +130,13 @@ public class DeckCard
 
     private Boolean SelectNextMovementSet()
     {
-        MovementSet pMStNext = null;
-        if(cQueMovementSets.TryDequeue(out pMStNext))
+        Waypoint pMStNext = null;
+        if(cQueWaypoints.TryDequeue(out pMStNext))
         {
             cFltCurrentPathPercent = 0.0f;
             cDteCurrentStartedAt = DateTime.UtcNow;
             Debug.Log(String.Format("Got next movement set '{0}'.", pMStNext.Name));
-            cMSeCurrentMovementSet = pMStNext;
+            cWayCurrentWaypoint = pMStNext;
             pVe3LastPosition = GameObjectRef.transform.position;
         }
         return (pMStNext != null);
@@ -203,13 +200,13 @@ public class DeckCard
         iTween.RotateTo(GameObjectRef, Facing.ToVector3(), 0.5f);
     }
 
-    public void AddMovementSets(List<MovementSet> iMovementSets)
+    public void AddWaypoints(List<Waypoint> iWaypoints)
     {
         if (!IsTweening)
         {
-            foreach(MovementSet curSet in iMovementSets)
+            foreach(Waypoint curWaypoint in iWaypoints)
             {
-                cQueMovementSets.Enqueue(curSet);
+                cQueWaypoints.Enqueue(curWaypoint);
             }
         }
     }
@@ -220,7 +217,7 @@ public class DeckCard
         {
             cFltCurrentPathPercent = 0;
         }
-        if (cMSeCurrentMovementSet == null)
+        if (cWayCurrentWaypoint == null)
         {
             cBlnIsTweening = SelectNextMovementSet();
         }
@@ -240,44 +237,44 @@ public class DeckCard
 
     public Boolean UpdateTween()
     {
-        if(cMSeCurrentMovementSet == null)
+        if(cWayCurrentWaypoint == null)
         {
             cBlnIsTweening = SelectNextMovementSet();
         }
 
         if(IsTweening)
         {
-            if(cMSeCurrentMovementSet.Instant)
+            if(cWayCurrentWaypoint.Instant)
             {
                 //This set is done instantly with no tweening
-                if(cMSeCurrentMovementSet.Position.HasValue)
+                if(cWayCurrentWaypoint.Position.HasValue)
                 {
-                    GameObjectRef.transform.position = cMSeCurrentMovementSet.Position.Value;
+                    GameObjectRef.transform.position = cWayCurrentWaypoint.Position.Value;
                 }
-                if (cMSeCurrentMovementSet.Rotation.HasValue)
+                if (cWayCurrentWaypoint.Rotation.HasValue)
                 {
-                    GameObjectRef.transform.rotation = Quaternion.Euler(cMSeCurrentMovementSet.Rotation.Value);
+                    GameObjectRef.transform.rotation = Quaternion.Euler(cWayCurrentWaypoint.Rotation.Value);
                 }
                 cFltCurrentPathPercent = 1.0f;                                      //This has finished
             }
             else
             {
                 //Increment the position
-                cFltCurrentPathPercent += cMSeCurrentMovementSet.PercentPerSecond * Time.deltaTime;
+                cFltCurrentPathPercent += cWayCurrentWaypoint.PercentPerSecond * Time.deltaTime;
                 if (cFltCurrentPathPercent > 1.0f) cFltCurrentPathPercent = 1.0f;
 
                 //Change position if it's been set
-                if (cMSeCurrentMovementSet.Position.HasValue)
+                if (cWayCurrentWaypoint.Position.HasValue)
                 {
                     //Tween from last position (when movement set was selected) to next position
-                    Vector3 pVe3CurrentPos = iTween.PointOnPath(new Vector3[] { pVe3LastPosition, cMSeCurrentMovementSet.Position.Value }, cFltCurrentPathPercent);
+                    Vector3 pVe3CurrentPos = iTween.PointOnPath(new Vector3[] { pVe3LastPosition, cWayCurrentWaypoint.Position.Value }, cFltCurrentPathPercent);
                     GameObjectRef.transform.position = pVe3CurrentPos;
                 }
 
                 //Change rotation if it's been set
-                if (cMSeCurrentMovementSet.Rotation.HasValue)
+                if (cWayCurrentWaypoint.Rotation.HasValue)
                 {
-                    iTween.RotateUpdate(GameObjectRef, cMSeCurrentMovementSet.Rotation.Value, cMSeCurrentMovementSet.RotationTime);
+                    iTween.RotateUpdate(GameObjectRef, cWayCurrentWaypoint.Rotation.Value, cWayCurrentWaypoint.RotationTime);
                 }
             }
 
@@ -288,19 +285,6 @@ public class DeckCard
             }
         }
         return (IsTweening);
-    }
-
-    public void UndoLastTween(Boolean iStart)
-    {
-        //List<Transform> pLisWaypoints = cStaWaypointHistory.Pop();
-        //pLisWaypoints.Reverse();
-        //AddPathWaypoints(pLisWaypoints.ToArray());
-        //if (iStart) StartTween(true);
-    }
-
-    public void DrawPath()
-    {
-        //iTween.DrawPath(Waypoints.ToArray());
     }
 
     #endregion

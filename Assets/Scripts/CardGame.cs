@@ -147,7 +147,6 @@ public class CardGame : MonoBehaviour
                 }
             case "FlippedStack":
                 {
-                    e.Card.UndoLastTween(true);
                     break;
                 }
         }

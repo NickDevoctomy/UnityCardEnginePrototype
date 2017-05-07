@@ -101,14 +101,14 @@ namespace Assets.Scripts
                 Vector3 pVe3EndPos = iStackPoint.PrepareNextCardPos();
                 iStackPoint.Group.Stack.Add(pDCdCard);
 
-                List<MovementSet> pLisMovementSets = MovementCreator.CreateMovementSets(pDCdCard,
+                List<Waypoint> pLisMovementSets = MovementCreator.CreateWaypoints(pDCdCard,
                     pVe3StartPos,
                     pVe3EndPos,
                     MovementCreator.PredefinedMovements.Start,
                     MovementCreator.PredefinedMovements.CeilingCentrePoint,
                     MovementCreator.PredefinedMovements.Flip,
                     MovementCreator.PredefinedMovements.End);
-                pDCdCard.AddMovementSets(pLisMovementSets);
+                pDCdCard.AddWaypoints(pLisMovementSets);
 
                 pDCdCard.StartTween(true);
             }
