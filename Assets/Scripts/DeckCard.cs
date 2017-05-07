@@ -192,6 +192,7 @@ public class DeckCard
 
         if (iFacing == CardFacing.Down)
         {
+            GameObjectRef.transform.rotation = Quaternion.Euler(iFacing.ToVector3());
         }
         Facing = iFacing;    
     }
