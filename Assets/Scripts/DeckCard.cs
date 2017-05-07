@@ -128,7 +128,7 @@ public class DeckCard
 
     #region private methods
 
-    private Boolean SelectNextMovementSet()
+    private Boolean SelectNextWaypoint()
     {
         Waypoint pMStNext = null;
         if(cQueWaypoints.TryDequeue(out pMStNext))
@@ -138,6 +138,10 @@ public class DeckCard
             Debug.Log(String.Format("Got next movement set '{0}'.", pMStNext.Name));
             cWayCurrentWaypoint = pMStNext;
             pVe3LastPosition = GameObjectRef.transform.position;
+        }
+        else
+        {
+            cWayCurrentWaypoint = null;
         }
         return (pMStNext != null);
     }
@@ -219,7 +223,8 @@ public class DeckCard
         }
         if (cWayCurrentWaypoint == null)
         {
-            cBlnIsTweening = SelectNextMovementSet();
+            Debug.Log("Selecting next waypoint.");
+            cBlnIsTweening = SelectNextWaypoint();
         }
         cDteCurrentStartedAt = DateTime.UtcNow;
     }
@@ -239,7 +244,7 @@ public class DeckCard
     {
         if(cWayCurrentWaypoint == null)
         {
-            cBlnIsTweening = SelectNextMovementSet();
+            cBlnIsTweening = SelectNextWaypoint();
         }
 
         if(IsTweening)
@@ -281,7 +286,7 @@ public class DeckCard
             if (cFltCurrentPathPercent == 1.0f)                                     //We have finished tweening
             {
                 Debug.Log(String.Format("Previous movement set took '{0}' to complete.", DateTime.UtcNow - cDteCurrentStartedAt));
-                cBlnIsTweening = SelectNextMovementSet();
+                cBlnIsTweening = SelectNextWaypoint();
             }
         }
         return (IsTweening);
