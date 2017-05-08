@@ -1,10 +1,7 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using UnityEngine;
 
 namespace Assets.Scripts.Meta
 {
@@ -26,6 +23,9 @@ namespace Assets.Scripts.Meta
         [JsonProperty(Required = Required.Always)]
         public GameGroup[] Groups { get; set; }
 
+        [JsonIgnore]
+        public Rules Rules { get; private set; }
+
         #endregion
 
         #region constructor / destructor
@@ -44,6 +44,27 @@ namespace Assets.Scripts.Meta
         {
             String pStrConfigJSON = File.ReadAllText(String.Format("Assets\\Cards\\{0}.game", iName));
             Game pGamGame = JsonConvert.DeserializeObject<Game>(pStrConfigJSON);
+
+            //Let's parse the rules manually as it's going to be quite complex
+            JObject pJOtJSON = JObject.Parse(pStrConfigJSON);
+            if(pJOtJSON["Rules"] != null)
+            {
+                Rules pRulRules = Rules.FromJObject(pJOtJSON["Rules"].Value<JObject>());
+                pGamGame.Rules = pRulRules;
+
+                DeckCard pDCnCard1 = new DeckCard(new DeckCardTag() { Name = "Suit", Value = "Hearts" });
+                DeckCard pDCnCard2 = new DeckCard(new DeckCardTag() { Name = "Suit", Value = "Diamonds" });
+                DeckCard pDCnCard3 = new DeckCard(new DeckCardTag() { Name = "Suit", Value = "Clubs" });
+                DeckCard pDCnCard4 = new DeckCard(new DeckCardTag() { Name = "Suit", Value = "Spades" });
+
+                Boolean pBlnChecked = pRulRules.CheckFunction("OppositeColour", pDCnCard1, pDCnCard1);
+                if(pBlnChecked)
+                {
+
+                }
+
+            }
+
             pGamGame.Initialise(iManager);
             return (pGamGame);
         }

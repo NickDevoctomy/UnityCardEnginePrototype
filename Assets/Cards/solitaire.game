@@ -1,10 +1,10 @@
 ﻿{
-	"Info":{
-		"Name": "Solitaire",
-		"Description": "Solitaire / Patience",
-		"Author": "devoctomy",
-		"Deck": "standard"
-	},
+  "Info": {
+    "Name": "Solitaire",
+    "Description": "Solitaire / Patience",
+    "Author": "devoctomy",
+    "Deck": "standard"
+  },
   "Placements": {
     "StackPoints": [
       {
@@ -97,58 +97,240 @@
       }
     ]
   },
-	"Groups":[
-		{
-			"Placement": "Spread1",
-			"CardCount": 1
-		},
-		{
-			"Placement": "Spread2",
-			"CardCount": 2
-		},
-		{
-			"Placement": "Spread3",
-			"CardCount": 3
-		},
-		{
-			"Placement": "Spread4",
-			"CardCount": 4
-		},
-		{
-			"Placement": "Spread5",
-			"CardCount": 5
-		},
-		{
-			"Placement": "Spread6",
-			"CardCount": 6
-		},
-		{
-			"Placement": "Spread7",
-			"CardCount": 7
-		},
-		{
-			"Placement": "StartStack",
-			"CardCount": -1
-		},
-		{
-			"Placement": "FlippedStack",
-			"CardCount": 0
-		},
-		{
-			"Placement": "SuitStack1",
-			"CardCount": 0
-		},
-		{
-			"Placement": "SuitStack2",
-			"CardCount": 0
-		},
-		{
-			"Placement": "SuitStack3",
-			"CardCount": 0
-		},
-		{
-			"Placement": "SuitStack4",
-			"CardCount": 0
-		}
-	]
+  "Groups": [
+    {
+      "Placement": "Spread1",
+      "CardCount": 1
+    },
+    {
+      "Placement": "Spread2",
+      "CardCount": 2
+    },
+    {
+      "Placement": "Spread3",
+      "CardCount": 3
+    },
+    {
+      "Placement": "Spread4",
+      "CardCount": 4
+    },
+    {
+      "Placement": "Spread5",
+      "CardCount": 5
+    },
+    {
+      "Placement": "Spread6",
+      "CardCount": 6
+    },
+    {
+      "Placement": "Spread7",
+      "CardCount": 7
+    },
+    {
+      "Placement": "StartStack",
+      "CardCount": -1
+    },
+    {
+      "Placement": "FlippedStack",
+      "CardCount": 0
+    },
+    {
+      "Placement": "SuitStack1",
+      "CardCount": 0
+    },
+    {
+      "Placement": "SuitStack2",
+      "CardCount": 0
+    },
+    {
+      "Placement": "SuitStack3",
+      "CardCount": 0
+    },
+    {
+      "Placement": "SuitStack4",
+      "CardCount": 0
+    }
+  ],
+  "Rules": {
+    "TagFunctions": [
+      {
+        "Name": "SameSuit",
+        "Conditions": {
+          "Suit": [
+            {
+              "CurrentValue": "Hearts",
+              "NextValue": "{CurrentValue}"
+            },
+            {
+              "CurrentValue": "Diamonds",
+              "NextValue": "{CurrentValue}"
+            },
+            {
+              "CurrentValue": "Clubs",
+              "NextValue": "{CurrentValue}"
+            },
+            {
+              "CurrentValue": "Spades",
+              "NextValue": "{CurrentValue}"
+            }
+          ]
+        }
+      },
+      {
+        "Name": "Next",
+        "Conditions": {
+          "Value": [
+            {
+              "CurrentValue": ".",
+              "NextValue": "$Up,CurrentValue,1"
+            }
+          ]
+        }
+      },
+      {
+        "Name": "Prev",
+        "Conditions": {
+          "Value": [
+            {
+              "CurrentValue": ".",
+              "NextValue": "$Down,CurrentValue,1"
+            }
+          ]
+        }
+      },
+      {
+        "Name": "OppositeColour",
+        "Conditions": {
+          "Suit": [
+            {
+              "CurrentValue": "Hearts,Diamonds",
+              "NextValue": "Clubs,Spades"
+            },
+            {
+              "CurrentValue": "Clubs,Spades",
+              "NextValue": "Hearts,Diamonds"
+            }
+          ]
+        }
+      }
+    ],
+    "Stacks": [
+      {
+        "Name": "SuitStack1",
+        "FirstCardTags": {
+          "Suit": "Hearts",
+          "Value": 1
+        },
+        "NextCardTags": {
+          "Suit": "$SameSuit",
+          "Value": "$Next"
+        }
+      },
+      {
+        "Name": "SuitStack2",
+        "FirstCardTags": {
+          "Suit": "Diamonds",
+          "Value": 1
+        },
+        "NextCardTags": {
+          "Suit": "$SameSuit",
+          "Value": "$Next"
+        }
+      },
+      {
+        "Name": "SuitStack3",
+        "FirstCardTags": {
+          "Suit": "Clubs",
+          "Value": 1
+        },
+        "NextCardTags": {
+          "Suit": "$SameSuit",
+          "Value": "$Next"
+        }
+      },
+      {
+        "Name": "SuitStack4",
+        "FirstCardTags": {
+          "Suit": "Spades",
+          "Value": 1
+        },
+        "NextCardTags": {
+          "Suit": "$SameSuit",
+          "Value": "$Next"
+        }
+      }
+    ],
+    "Spreads": [
+      {
+        "Name": "SpreadArea1",
+        "FirstCardTags": {
+          "Value": 13
+        },
+        "NextCardTags": {
+          "Suit": "$OppositeColour",
+          "Value": "$Prev"
+        }
+      },
+      {
+        "Name": "SpreadArea2",
+        "FirstCardTags": {
+          "Value": 13
+        },
+        "NextCardTags": {
+          "Suit": "$OppositeColour",
+          "Value": "$Prev"
+        }
+      },
+      {
+        "Name": "SpreadArea3",
+        "FirstCardTags": {
+          "Value": 13
+        },
+        "NextCardTags": {
+          "Suit": "$OppositeColour",
+          "Value": "$Prev"
+        }
+      },
+      {
+        "Name": "SpreadArea4",
+        "FirstCardTags": {
+          "Value": 13
+        },
+        "NextCardTags": {
+          "Suit": "$OppositeColour",
+          "Value": "$Prev"
+        }
+      },
+      {
+        "Name": "SpreadArea5",
+        "FirstCardTags": {
+          "Value": 13
+        },
+        "NextCardTags": {
+          "Suit": "$OppositeColour",
+          "Value": "$Prev"
+        }
+      },
+      {
+        "Name": "SpreadArea6",
+        "FirstCardTags": {
+          "Value": 13
+        },
+        "NextCardTags": {
+          "Suit": "$OppositeColour",
+          "Value": "$Prev"
+        }
+      },
+      {
+        "Name": "SpreadArea7",
+        "FirstCardTags": {
+          "Value": 13
+        },
+        "NextCardTags": {
+          "Suit": "$OppositeColour",
+          "Value": "$Prev"
+        }
+      }
+    ]
+  }
 }
