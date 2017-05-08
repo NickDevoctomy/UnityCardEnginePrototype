@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts;
 using Assets.Scripts.Meta;
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CardGame : MonoBehaviour
@@ -10,6 +9,7 @@ public class CardGame : MonoBehaviour
     #region public objects
 
     public GameObject CardPrefab;
+    public String Game;
 
     #endregion
 
@@ -17,7 +17,6 @@ public class CardGame : MonoBehaviour
 
     private CardManager cCMrManager;
     private DeckCard cDCdSelectedCard;
-    //private List<PlacementBase> cLisAllPlacements;
 
     #endregion
 
@@ -29,79 +28,8 @@ public class CardGame : MonoBehaviour
         EventsHandler.Current.SpreadCardClicked += Current_SpreadCardClicked;
 
         cCMrManager = new CardManager(CardPrefab);
-        cCMrManager.LoadDeck("standard");
-
-        Game pGamGame = cCMrManager.LoadGame("solitaire");
-
+        Game pGamGame = cCMrManager.LoadGame(Game);
         pGamGame.Setup();
-
-        ////we should get all of this startup code into some game file
-        ////hopefully along with the game rules
-        //cCMrManager.CreateStackPoint("StartStack", new Vector2(-30.45f, 20));
-        //cCMrManager.CreateStackPoint("FlippedStack", new Vector2(-20.45f, 20));
-
-        //cCMrManager.CreateStackPoint("SuitStack1", new Vector2(-0.45f, 20));
-        //cCMrManager.CreateStackPoint("SuitStack2", new Vector2(9.55f, 20));
-        //cCMrManager.CreateStackPoint("SuitStack3", new Vector2(19.55f, 20));
-        //cCMrManager.CreateStackPoint("SuitStack4", new Vector2(29.55f, 20));
-
-        //cCMrManager.CreateSpreadArea("Spread1", new Vector2(-30.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread2", new Vector2(-20.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread3", new Vector2(-10.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread4", new Vector2(-0.45f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread5", new Vector2(9.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread6", new Vector2(19.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-        //cCMrManager.CreateSpreadArea("Spread7", new Vector2(29.55f, 5), SpreadArea.SpreadAlignment.Near, SpreadArea.SpreadOrientation.Vertical, 1.0F);
-
-        //cCMrManager.CreateDeckGroup("standard", "Spread1", 1);
-        //cCMrManager.CreateDeckGroup("standard", "Spread2", 2);
-        //cCMrManager.CreateDeckGroup("standard", "Spread3", 3);
-        //cCMrManager.CreateDeckGroup("standard", "Spread4", 4);
-        //cCMrManager.CreateDeckGroup("standard", "Spread5", 5);
-        //cCMrManager.CreateDeckGroup("standard", "Spread6", 6);
-        //cCMrManager.CreateDeckGroup("standard", "Spread7", 7);
-        //cCMrManager.CreateDeckGroup("standard", "StartStack", -1);
-        //cCMrManager.CreateDeckGroup("standard", "FlippedStack", 0);
-        //cCMrManager.CreateDeckGroup("standard", "SuitStack1", 0);
-        //cCMrManager.CreateDeckGroup("standard", "SuitStack2", 0);
-        //cCMrManager.CreateDeckGroup("standard", "SuitStack3", 0);
-        //cCMrManager.CreateDeckGroup("standard", "SuitStack4", 0);
-
-        //cCMrManager.StackPoints["StartStack"].PlaceGroup(cCMrManager.Groups["standard.StartStack"], DeckCard.CardFacing.Down);
-        //cCMrManager.StackPoints["FlippedStack"].PlaceGroup(cCMrManager.Groups["standard.FlippedStack"], DeckCard.CardFacing.Down);
-        //cCMrManager.SpreadAreas["Spread1"].PlaceGroup(cCMrManager.Groups["standard.Spread1"], DeckCard.CardFacing.Down);
-        //cCMrManager.SpreadAreas["Spread2"].PlaceGroup(cCMrManager.Groups["Standard.Spread2"], DeckCard.CardFacing.Down);
-        //cCMrManager.SpreadAreas["Spread3"].PlaceGroup(cCMrManager.Groups["standard.Spread3"], DeckCard.CardFacing.Down);
-        //cCMrManager.SpreadAreas["Spread4"].PlaceGroup(cCMrManager.Groups["standard.Spread4"], DeckCard.CardFacing.Down);
-        //cCMrManager.SpreadAreas["Spread5"].PlaceGroup(cCMrManager.Groups["standard.Spread5"], DeckCard.CardFacing.Down);
-        //cCMrManager.SpreadAreas["Spread6"].PlaceGroup(cCMrManager.Groups["standard.Spread6"], DeckCard.CardFacing.Down);
-        //cCMrManager.SpreadAreas["Spread7"].PlaceGroup(cCMrManager.Groups["standard.Spread7"], DeckCard.CardFacing.Down);
-        //cCMrManager.StackPoints["SuitStack1"].PlaceGroup(cCMrManager.Groups["standard.SuitStack1"], DeckCard.CardFacing.Up);
-        //cCMrManager.StackPoints["SuitStack2"].PlaceGroup(cCMrManager.Groups["standard.SuitStack2"], DeckCard.CardFacing.Up);
-        //cCMrManager.StackPoints["SuitStack3"].PlaceGroup(cCMrManager.Groups["standard.SuitStack3"], DeckCard.CardFacing.Up);
-        //cCMrManager.StackPoints["SuitStack4"].PlaceGroup(cCMrManager.Groups["standard.SuitStack4"], DeckCard.CardFacing.Up);
-
-        ////flip cards that need flipping
-        //cCMrManager.FlipTopNCards(1, cCMrManager.SpreadAreas["Spread1"],
-        //    cCMrManager.SpreadAreas["Spread2"],
-        //    cCMrManager.SpreadAreas["Spread3"],
-        //    cCMrManager.SpreadAreas["Spread4"],
-        //    cCMrManager.SpreadAreas["Spread5"],
-        //    cCMrManager.SpreadAreas["Spread6"],
-        //    cCMrManager.SpreadAreas["Spread7"]);
-
-        //cLisAllPlacements = new List<PlacementBase>();
-        //cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack1"]);
-        //cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack2"]);
-        //cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack3"]);
-        //cLisAllPlacements.Add(cCMrManager.StackPoints["SuitStack4"]);
-        //cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread1"]);
-        //cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread2"]);
-        //cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread3"]);
-        //cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread4"]);
-        //cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread5"]);
-        //cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread6"]);
-        //cLisAllPlacements.Add(cCMrManager.SpreadAreas["Spread7"]);
     }
 
     void Update()
@@ -233,7 +161,7 @@ public class CardGame : MonoBehaviour
         {
             if(e.Card.Facing == DeckCard.CardFacing.Down)
             {
-                e.Card.Flip();
+                e.Card.Flip(false);
             }
             else
             {

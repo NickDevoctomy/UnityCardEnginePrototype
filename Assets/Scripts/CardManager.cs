@@ -217,11 +217,12 @@ public class CardManager
     }
 
     public void FlipTopNCards(Int32 iCount,
+        Boolean iInstant,
         params PlacementBase[] iPlacements)
     {
         foreach(PlacementBase curPlacement in iPlacements)
         {
-            curPlacement.FlipTopNCards(iCount);
+            curPlacement.FlipTopNCards(iCount, iInstant);
         }
     }
 

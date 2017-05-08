@@ -51,6 +51,7 @@ namespace Assets.Scripts.Meta
         public void Initialise(CardManager iManager)
         {
             Manager = iManager;
+            Manager.LoadDeck(Info.Deck);
         }
 
         public void Setup()
@@ -86,11 +87,11 @@ namespace Assets.Scripts.Meta
             //Flip cards that need flipping
             foreach(GamePlacementStackPoint curStackPoint in Placements.StackPoints)
             {
-                Manager.FlipTopNCards(curStackPoint.FlipCount, Manager.StackPoints[curStackPoint.Name]);
+                Manager.FlipTopNCards(curStackPoint.FlipCount, true, Manager.StackPoints[curStackPoint.Name]);
             }
             foreach (GamePlacementSpreadArea curSpreadArea in Placements.SpreadAreas)
             {
-                Manager.FlipTopNCards(curSpreadArea.FlipCount, Manager.SpreadAreas[curSpreadArea.Name]);
+                Manager.FlipTopNCards(curSpreadArea.FlipCount, true, Manager.SpreadAreas[curSpreadArea.Name]);
             }
         }
 

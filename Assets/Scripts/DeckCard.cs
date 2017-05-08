@@ -198,10 +198,17 @@ public class DeckCard
         Facing = iFacing;    
     }
 
-    public void Flip()
+    public void Flip(Boolean iInstant)
     {
         Facing = Facing == CardFacing.Up ? CardFacing.Down : CardFacing.Up;
-        iTween.RotateTo(GameObjectRef, Facing.ToVector3(), 0.5f);
+        if(iInstant)
+        {
+            GameObjectRef.transform.rotation = Quaternion.Euler(Facing.ToVector3());
+        }
+        else
+        {
+            iTween.RotateTo(GameObjectRef, Facing.ToVector3(), 0.5f);
+        }   
     }
 
     public void AddWaypoints(List<Waypoint> iWaypoints)

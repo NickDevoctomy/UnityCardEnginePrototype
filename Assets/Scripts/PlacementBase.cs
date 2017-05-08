@@ -113,14 +113,15 @@ namespace Assets.Scripts
             OnPlaceGroup(CardPrefab, Position, iFacing);
         }
 
-        public void FlipTopNCards(Int32 iCount)
+        public void FlipTopNCards(Int32 iCount,
+            Boolean iInstant)
         {
             for (Int32 curCard = 1; curCard <= iCount; curCard++)
             {
                 Int32 pIntIndex = Group.Stack.Count - curCard;
                 if (pIntIndex >= 0)
                 {
-                    Group.Stack[pIntIndex].Flip();
+                    Group.Stack[pIntIndex].Flip(iInstant);
                 }
             }
         }
