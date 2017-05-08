@@ -1,0 +1,154 @@
+﻿{
+	"Info":{
+		"Name": "Solitaire",
+		"Description": "Solitaire / Patience",
+		"Author": "devoctomy",
+		"Deck": "standard"
+	},
+  "Placements": {
+    "StackPoints": [
+      {
+        "Name": "StartStack",
+        "Position": "-30.45,20",
+        "FlipCount": 0
+      },
+      {
+        "Name": "FlippedStack",
+        "Position": "-20.45,20",
+        "FlipCount": 0
+      },
+      {
+        "Name": "SuitStack1",
+        "Position": "-0.45,20",
+        "FlipCount": 0
+      },
+      {
+        "Name": "SuitStack2",
+        "Position": "9.55,20",
+        "FlipCount": 0
+      },
+      {
+        "Name": "SuitStack3",
+        "Position": "19.55,20",
+        "FlipCount": 0
+      },
+      {
+        "Name": "SuitStack4",
+        "Position": "29.55,20",
+        "FlipCount": 0
+      }
+    ],
+    "SpreadAreas": [
+      {
+        "Name": "Spread1",
+        "Position": "-30.45,5",
+        "Alignment": "Near",
+        "Orientation": "Vertical",
+        "Length": 1.0,
+        "FlipCount": 1
+      },
+      {
+        "Name": "Spread2",
+        "Position": "-20.45,5",
+        "Alignment": "Near",
+        "Orientation": "Vertical",
+        "Length": 1.0,
+        "FlipCount": 1
+      },
+      {
+        "Name": "Spread3",
+        "Position": "-10.45,5",
+        "Alignment": "Near",
+        "Orientation": "Vertical",
+        "Length": 1.0,
+        "FlipCount": 1
+      },
+      {
+        "Name": "Spread4",
+        "Position": "-0.45,5",
+        "Alignment": "Near",
+        "Orientation": "Vertical",
+        "Length": 1.0,
+        "FlipCount": 1
+      },
+      {
+        "Name": "Spread5",
+        "Position": "9.55,5",
+        "Alignment": "Near",
+        "Orientation": "Vertical",
+        "Length": 1.0,
+        "FlipCount": 1
+      },
+      {
+        "Name": "Spread6",
+        "Position": "19.55,5",
+        "Alignment": "Near",
+        "Orientation": "Vertical",
+        "Length": 1.0,
+        "FlipCount": 1
+      },
+      {
+        "Name": "Spread7",
+        "Position": "29.55,5",
+        "Alignment": "Near",
+        "Orientation": "Vertical",
+        "Length": 1.0,
+        "FlipCount": 1
+      }
+    ]
+  },
+	"Groups":[
+		{
+			"Placement": "Spread1",
+			"CardCount": 1
+		},
+		{
+			"Placement": "Spread2",
+			"CardCount": 2
+		},
+		{
+			"Placement": "Spread3",
+			"CardCount": 3
+		},
+		{
+			"Placement": "Spread4",
+			"CardCount": 4
+		},
+		{
+			"Placement": "Spread5",
+			"CardCount": 5
+		},
+		{
+			"Placement": "Spread6",
+			"CardCount": 6
+		},
+		{
+			"Placement": "Spread7",
+			"CardCount": 7
+		},
+		{
+			"Placement": "StartStack",
+			"CardCount": -1
+		},
+		{
+			"Placement": "FlippedStack",
+			"CardCount": 0
+		},
+		{
+			"Placement": "SuitStack1",
+			"CardCount": 0
+		},
+		{
+			"Placement": "SuitStack2",
+			"CardCount": 0
+		},
+		{
+			"Placement": "SuitStack3",
+			"CardCount": 0
+		},
+		{
+			"Placement": "SuitStack4",
+			"CardCount": 0
+		},
+	]
+}

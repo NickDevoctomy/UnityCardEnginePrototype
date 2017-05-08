@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Meta;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class CardManager
@@ -13,6 +15,7 @@ public class CardManager
     private Dictionary<String, DeckGroup> cDicDeckGroups;
     private Dictionary<String, StackPoint> cDicStackPoints;
     private Dictionary<String, SpreadArea> cDicSpreadAreas;
+    private Dictionary<String, PlacementBase> cDicPlacements;
 
     #endregion
 
@@ -50,6 +53,22 @@ public class CardManager
         }
     }
 
+    public Dictionary<String, PlacementBase> Placements
+    {
+        get
+        {
+            return (cDicPlacements);
+        }
+    }
+
+    public List<PlacementBase> AllPlacements
+    {
+        get
+        {
+            return (cDicPlacements.Values.ToList());
+        }
+    }
+
     #endregion
 
     #region constructor / destructor
@@ -61,6 +80,7 @@ public class CardManager
         cDicDeckGroups = new Dictionary<String, DeckGroup>();
         cDicStackPoints = new Dictionary<String, StackPoint>();
         cDicSpreadAreas = new Dictionary<String, SpreadArea>();
+        cDicPlacements = new Dictionary<String, PlacementBase>();
     }
 
     #endregion
@@ -72,6 +92,12 @@ public class CardManager
         Deck pDekDeck = Deck.LoadFromAssets(this, iName);
         cDicDecks.Add(iName, pDekDeck);
         return (pDekDeck);
+    }
+
+    public Game LoadGame(String iName)
+    {
+        Game pGamGame = Game.LoadFromAssets(this, iName);
+        return (pGamGame);
     }
 
     /// <summary>
@@ -132,6 +158,7 @@ public class CardManager
                 iName, 
                 new Vector3(iPosition.x, 0.01f, iPosition.y));
             cDicStackPoints.Add(iName, pSPtPoint);
+            cDicPlacements.Add(iName, pSPtPoint);
 
             ////let's create a plane so that we can see our stack point
             //GameObject pGOtSpreadArea = GameObject.CreatePrimitive(PrimitiveType.Plane);
@@ -162,6 +189,7 @@ public class CardManager
                 iOrientation, 
                 iLength);
             cDicSpreadAreas.Add(iName, pSAeArea);
+            cDicPlacements.Add(iName, pSAeArea);
 
             ////let's create a plane so that we can see our spread area
             //GameObject pGOtSpreadArea = GameObject.CreatePrimitive(PrimitiveType.Plane);

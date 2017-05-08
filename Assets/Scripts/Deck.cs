@@ -65,7 +65,7 @@ public class Deck
     public static Deck LoadFromAssets(CardManager iManager,
         String iName)
     {
-        String pStrConfigJSON = File.ReadAllText(String.Format("Assets\\Cards\\{0}.json", iName));
+        String pStrConfigJSON = File.ReadAllText(String.Format("Assets\\Cards\\{0}.deck", iName));
         Deck pDekDeck = JsonConvert.DeserializeObject<Deck>(pStrConfigJSON);
         pDekDeck.Initialise(iManager);
         return (pDekDeck);
