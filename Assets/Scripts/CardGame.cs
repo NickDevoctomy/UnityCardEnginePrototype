@@ -30,6 +30,8 @@ public class CardGame : MonoBehaviour
         cCMrManager = new CardManager(CardPrefab);
         cCMrManager.LoadDeck("Standard");
 
+        //we should get all of this startup code into some game file
+        //hopefully along with the game rules
         cCMrManager.CreateStackPoint("StartStack", new Vector2(-30.45f, 20));
         cCMrManager.CreateStackPoint("FlippedStack", new Vector2(-20.45f, 20));
 
@@ -75,7 +77,7 @@ public class CardGame : MonoBehaviour
         cCMrManager.StackPoints["SuitStack4"].PlaceGroup(cCMrManager.Groups["Standard.SuitStack4"], DeckCard.CardFacing.Up);
 
         //flip cards that need flipping
-        cCMrManager.FlipToNCards(1, cCMrManager.SpreadAreas["Spread1"],
+        cCMrManager.FlipTopNCards(1, cCMrManager.SpreadAreas["Spread1"],
             cCMrManager.SpreadAreas["Spread2"],
             cCMrManager.SpreadAreas["Spread3"],
             cCMrManager.SpreadAreas["Spread4"],
@@ -129,13 +131,16 @@ public class CardGame : MonoBehaviour
                 DeckCard pDCdPlacementTopCard = curPlacement.TopCard;
                 if(pDCdPlacementTopCard != null)
                 {
-                    if(pDCdPlacementTopCard.Facing == DeckCard.CardFacing.Up)
+                    //Only move to suit stack
+                    if (curPlacement.Name.StartsWith("SuitStack"))
                     {
-
-                    }
-                    else
-                    {
-
+                        //Only move if next card up and the same suite
+                        if (IsNextUp(pDCdPlacementTopCard, iCard) &&
+                            iCard.TagsByName["Suit"].Value.Equals(pDCdPlacementTopCard.TagsByName["Suit"].Value))
+                        {
+                            iOrigin.MoveTopCardToPlacement(curPlacement, false);
+                            break;
+                        }
                     }
                 }
                 else
@@ -150,15 +155,6 @@ public class CardGame : MonoBehaviour
                             break;
                         }
                     }
-                    else if (curPlacement.Name.StartsWith("Spread"))
-                    {
-                        //Only move over if it's a king
-                        if (Int32.Parse(iCard.TagsByName["Value"].Value) == 13)
-                        {
-                            iOrigin.MoveTopCardToPlacement(curPlacement, false);
-                            break;
-                        }
-                    }
                 }
             }
         }
@@ -166,7 +162,7 @@ public class CardGame : MonoBehaviour
         {
             if(iOrigin.Name.StartsWith("SuitStack"))
             {
-
+                //Let's not allow autoplay back again
             }
             else if(iOrigin.Name.StartsWith("Spread"))
             {
@@ -175,13 +171,16 @@ public class CardGame : MonoBehaviour
                     DeckCard pDCdPlacementTopCard = curPlacement.TopCard;
                     if (pDCdPlacementTopCard != null)
                     {
-                        if (pDCdPlacementTopCard.Facing == DeckCard.CardFacing.Up)
+                        //Only move to suit stack
+                        if (curPlacement.Name.StartsWith("SuitStack"))
                         {
-
-                        }
-                        else
-                        {
-
+                            //Only move if next card up and the same suite
+                            if (IsNextUp(pDCdPlacementTopCard, iCard) && 
+                                iCard.TagsByName["Suit"].Value.Equals(pDCdPlacementTopCard.TagsByName["Suit"].Value))
+                            {
+                                iOrigin.MoveTopCardToPlacement(curPlacement, false);
+                                break;
+                            }
                         }
                     }
                     else
@@ -191,15 +190,6 @@ public class CardGame : MonoBehaviour
                         {
                             //Only move to stack if it's an ace
                             if (Int32.Parse(iCard.TagsByName["Value"].Value) == 1)
-                            {
-                                iOrigin.MoveTopCardToPlacement(curPlacement, false);
-                                break;
-                            }
-                        }
-                        else if (curPlacement.Name.StartsWith("Spread"))
-                        {
-                            //Only move over if it's a king
-                            if (Int32.Parse(iCard.TagsByName["Value"].Value) == 13)
                             {
                                 iOrigin.MoveTopCardToPlacement(curPlacement, false);
                                 break;

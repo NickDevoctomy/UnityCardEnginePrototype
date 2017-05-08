@@ -35,7 +35,7 @@ public class Card : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        //DeckCard pDCdCard = Deck.CardsByGameObject[this.gameObject];
+        //nothing to do
     }
 
     #endregion

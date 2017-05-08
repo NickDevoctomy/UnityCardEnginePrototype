@@ -188,7 +188,7 @@ public class CardManager
         return (null);
     }
 
-    public void FlipToNCards(Int32 iCount,
+    public void FlipTopNCards(Int32 iCount,
         params PlacementBase[] iPlacements)
     {
         foreach(PlacementBase curPlacement in iPlacements)
