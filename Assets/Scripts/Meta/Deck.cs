@@ -45,7 +45,10 @@ namespace Assets.Scripts.Meta
             {
                 if(cTexBackTexture == null)
                 {
-                    cTexBackTexture = TextureUtility.LoadPNG(String.Format("{0}/Cards/{1}", Application.streamingAssetsPath, Info.BackImageFile));
+                    String pStrTextureFile = String.Format("{0}/Cards/{1}", Application.streamingAssetsPath, Info.BackImageFile);
+                    Debug.Log(String.Format("Loading texture file '{0}'.", pStrTextureFile));
+
+                    cTexBackTexture = TextureUtility.LoadPNG(pStrTextureFile);
                 }
                 return (cTexBackTexture);
             }
@@ -68,7 +71,10 @@ namespace Assets.Scripts.Meta
         public static Deck LoadFromAssets(CardManager iManager,
             String iName)
         {
-            String pStrConfigJSON = File.ReadAllText(String.Format("{0}/Cards/{1}.deck", Application.streamingAssetsPath, iName));
+            String pStrDeckFile = String.Format("{0}/Cards/{1}.deck", Application.streamingAssetsPath, iName);
+            Debug.Log(String.Format("Loading deck file '{0}'.", pStrDeckFile));
+
+            String pStrConfigJSON = File.ReadAllText(pStrDeckFile);
             Deck pDekDeck = JsonConvert.DeserializeObject<Deck>(pStrConfigJSON);
             pDekDeck.Initialise(iManager);
             return (pDekDeck);

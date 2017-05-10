@@ -195,7 +195,10 @@ namespace Assets.Scripts.Meta
                 GameObject pGOtFront = GameObjectRef.GetChildGameObject("Front");
                 GameObject pGOtBack = GameObjectRef.GetChildGameObject("Back");
 
-                Texture2D textureFront = TextureUtility.LoadPNG(String.Format("{0}/Cards/{1}", Application.streamingAssetsPath, FrontImageFile));
+                String pStrTextureFile = String.Format("{0}/Cards/{1}", Application.streamingAssetsPath, FrontImageFile);
+                Debug.Log(String.Format("Loading texture file '{0}'.", pStrTextureFile));
+
+                Texture2D textureFront = TextureUtility.LoadPNG(pStrTextureFile);
                 Renderer cardRenderer = pGOtFront.GetComponent<Renderer>();
                 cardRenderer.material.mainTexture = textureFront;
 

@@ -43,7 +43,10 @@ namespace Assets.Scripts.Meta
         public static Game LoadFromAssets(CardManager iManager,
             String iName)
         {
-            String pStrConfigJSON = File.ReadAllText(String.Format("{0}/Cards/{1}.game", Application.streamingAssetsPath, iName));
+            String pStrGameFile = String.Format("{0}/Cards/{1}.game", Application.streamingAssetsPath, iName);
+            Debug.Log(String.Format("Loading game file '{0}'.", pStrGameFile));
+
+            String pStrConfigJSON = File.ReadAllText(pStrGameFile);
             Game pGamGame = JsonConvert.DeserializeObject<Game>(pStrConfigJSON);
 
             //Let's parse the rules manually as it's going to be quite complex
