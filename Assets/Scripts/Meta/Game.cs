@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
+using UnityEngine;
 
 namespace Assets.Scripts.Meta
 {
@@ -42,7 +43,7 @@ namespace Assets.Scripts.Meta
         public static Game LoadFromAssets(CardManager iManager,
             String iName)
         {
-            String pStrConfigJSON = File.ReadAllText(String.Format("Assets\\Cards\\{0}.game", iName));
+            String pStrConfigJSON = File.ReadAllText(String.Format("{0}/Cards/{1}.game", Application.streamingAssetsPath, iName));
             Game pGamGame = JsonConvert.DeserializeObject<Game>(pStrConfigJSON);
 
             //Let's parse the rules manually as it's going to be quite complex

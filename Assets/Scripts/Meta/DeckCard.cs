@@ -1,9 +1,8 @@
-﻿using Assets.Scripts;
-using Assets.Scripts.Extensions;
+﻿using Assets.Scripts.Extensions;
 using Assets.Scripts.Utility;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Concurrent;
+//using System.Collections.Concurrent;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +26,7 @@ namespace Assets.Scripts.Meta
         #region private objects
 
         private Deck cDekDeck;
-        private ConcurrentQueue<Waypoint> cQueWaypoints;
+        private Queue<Waypoint> cQueWaypoints;
         private DateTime cDteCurrentStartedAt;
         private Waypoint cWayCurrentWaypoint;
         private Vector3 pVe3LastPosition;
@@ -101,7 +100,7 @@ namespace Assets.Scripts.Meta
         }
 
         [JsonIgnore]
-        public ConcurrentQueue<Waypoint> MovementSets
+        public Queue<Waypoint> MovementSets
         {
             get
             {
@@ -124,7 +123,7 @@ namespace Assets.Scripts.Meta
 
         public DeckCard()
         {
-            cQueWaypoints = new ConcurrentQueue<Waypoint>();
+            cQueWaypoints = new Queue<Waypoint>();
         }
 
         /// <summary>
@@ -133,7 +132,7 @@ namespace Assets.Scripts.Meta
         /// <param name="iTags"></param>
         public DeckCard(params DeckCardTag[] iTags)
         {
-            cQueWaypoints = new ConcurrentQueue<Waypoint>();
+            cQueWaypoints = new Queue<Waypoint>();
             Tags = iTags;
             EnumerateTagsByName();
         }
@@ -144,20 +143,21 @@ namespace Assets.Scripts.Meta
 
         private Boolean SelectNextWaypoint()
         {
-            Waypoint pMStNext = null;
-            if (cQueWaypoints.TryDequeue(out pMStNext))
+            try
             {
+                Waypoint pMStNext = cQueWaypoints.Dequeue();
                 cFltCurrentPathPercent = 0.0f;
                 cDteCurrentStartedAt = DateTime.UtcNow;
                 Debug.Log(String.Format("Got next movement set '{0}'.", pMStNext.Name));
                 cWayCurrentWaypoint = pMStNext;
                 pVe3LastPosition = GameObjectRef.transform.position;
+                return (true);
             }
-            else
+            catch(InvalidOperationException)    //Empty queue
             {
                 cWayCurrentWaypoint = null;
+                return (false);
             }
-            return (pMStNext != null);
         }
 
         private void EnumerateTagsByName()
@@ -195,7 +195,7 @@ namespace Assets.Scripts.Meta
                 GameObject pGOtFront = GameObjectRef.GetChildGameObject("Front");
                 GameObject pGOtBack = GameObjectRef.GetChildGameObject("Back");
 
-                Texture2D textureFront = TextureUtility.LoadPNG("Assets\\Cards\\" + FrontImageFile);
+                Texture2D textureFront = TextureUtility.LoadPNG(String.Format("{0}/Cards/{1}", Application.streamingAssetsPath, FrontImageFile));
                 Renderer cardRenderer = pGOtFront.GetComponent<Renderer>();
                 cardRenderer.material.mainTexture = textureFront;
 
