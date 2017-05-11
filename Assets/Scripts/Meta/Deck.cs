@@ -71,10 +71,9 @@ namespace Assets.Scripts.Meta
         public static Deck LoadFromAssets(CardManager iManager,
             String iName)
         {
-            String pStrDeckFile = String.Format("{0}/Cards/{1}.deck", Application.streamingAssetsPath, iName);
-            Debug.Log(String.Format("Loading deck file '{0}'.", pStrDeckFile));
+            Debug.Log(String.Format("Loading deck file '{0}'.", iName));
 
-            String pStrConfigJSON = File.ReadAllText(pStrDeckFile);
+            String pStrConfigJSON = IOUtility.LoadStreamingAssestsFileAsString(String.Format("Cards/{0}.deck", iName));
             Deck pDekDeck = JsonConvert.DeserializeObject<Deck>(pStrConfigJSON);
             pDekDeck.Initialise(iManager);
             return (pDekDeck);

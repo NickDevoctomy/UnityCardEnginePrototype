@@ -1,6 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using Assets.Scripts.Utility;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
+using System.Collections;
 using System.IO;
 using UnityEngine;
 
@@ -43,10 +45,9 @@ namespace Assets.Scripts.Meta
         public static Game LoadFromAssets(CardManager iManager,
             String iName)
         {
-            String pStrGameFile = String.Format("{0}/Cards/{1}.game", Application.streamingAssetsPath, iName);
-            Debug.Log(String.Format("Loading game file '{0}'.", pStrGameFile));
+            Debug.Log(String.Format("Loading game file '{0}'.", iName));
 
-            String pStrConfigJSON = File.ReadAllText(pStrGameFile);
+            String pStrConfigJSON = IOUtility.LoadStreamingAssestsFileAsString(String.Format("Cards/{0}.game", iName));
             Game pGamGame = JsonConvert.DeserializeObject<Game>(pStrConfigJSON);
 
             //Let's parse the rules manually as it's going to be quite complex
