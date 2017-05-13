@@ -156,7 +156,7 @@ namespace Assets.Scripts
                 DeckCard pDCdCard = Group.Stack[Group.Stack.Count - 1];
                 Group.Stack.RemoveAt(Group.Stack.Count - 1);
 
-                Logman.Log("Test", BaseLogger.MessageType.Information, "Moving card '{0}' from '{1}' to '{2}'.", pDCdCard.Tags.ToTagString(), Name, iPlacement.Name);
+                Logman.Log(BaseLogger.MessageType.Information, "Moving card '{0}' from '{1}' to '{2}'.", pDCdCard.Tags.ToTagString(), Name, iPlacement.Name);
 
                 //Get start and end pos and add it to the destination stack
                 Vector3 pVe3StartPos = pDCdCard.GameObjectRef.transform.position;

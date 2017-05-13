@@ -134,6 +134,8 @@ namespace Assets.Scripts.Meta
         /// <param name="iTags"></param>
         public DeckCard(params DeckCardTag[] iTags)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.Constructor({0})", iTags.ToTagString());
+
             cQueWaypoints = new Queue<Waypoint>();
             Tags = iTags;
             EnumerateTagsByName();
@@ -145,12 +147,14 @@ namespace Assets.Scripts.Meta
 
         private Boolean SelectNextWaypoint()
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.SelectNextWaypoint()");
+
             try
             {
                 Waypoint pMStNext = cQueWaypoints.Dequeue();
                 cFltCurrentPathPercent = 0.0f;
                 cDteCurrentStartedAt = DateTime.UtcNow;
-                Logman.Log("Test", BaseLogger.MessageType.Information, "Got next movement set '{0}'.", pMStNext.Name);
+                Logman.Log(BaseLogger.MessageType.Information, "Got next movement set '{0}'.", pMStNext.Name);
                 cWayCurrentWaypoint = pMStNext;
                 pVe3LastPosition = GameObjectRef.transform.position;
                 return (true);
@@ -164,6 +168,8 @@ namespace Assets.Scripts.Meta
 
         private void EnumerateTagsByName()
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.EnumerateTagsByName()");
+
             Dictionary<String, DeckCardTag> pDicTags = new Dictionary<String, DeckCardTag>();
             foreach (DeckCardTag curTag in Tags)
             {
@@ -179,6 +185,8 @@ namespace Assets.Scripts.Meta
         public void Initialise(Deck iDeck,
             String iBackImageFile)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.Initialise({0}, {1})", iDeck.Info.Name, iBackImageFile);
+
             cDekDeck = iDeck;
             BackImageFile = iBackImageFile;
             EnumerateTagsByName();
@@ -188,6 +196,8 @@ namespace Assets.Scripts.Meta
             Vector3 iPosition,
             CardFacing iFacing)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.Create({0}, {1}, {2})", iCardPrefab.name, iPosition.ToString(), iFacing.ToString());
+
             //only create our object once, otherwise just move it to the new location
             if (GameObjectRef == null)
             {
@@ -197,7 +207,7 @@ namespace Assets.Scripts.Meta
                 GameObject pGOtFront = GameObjectRef.GetChildGameObject("Front");
                 GameObject pGOtBack = GameObjectRef.GetChildGameObject("Back");
 
-                Logman.Log("Test", BaseLogger.MessageType.Information, "Loading texture file '{0}'.", FrontImageFile);
+                Logman.Log(BaseLogger.MessageType.Information, "Loading texture file '{0}'.", FrontImageFile);
 
                 Texture2D textureFront = IOUtility.LoadStreamingAssestsFileAsTexture2D(String.Format("Cards/{0}", FrontImageFile));
                 Renderer cardRenderer = pGOtFront.GetComponent<Renderer>();
@@ -223,6 +233,8 @@ namespace Assets.Scripts.Meta
 
         public void Flip(Boolean iInstant)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.Flip({0})", iInstant);
+
             Facing = Facing == CardFacing.Up ? CardFacing.Down : CardFacing.Up;
             if (iInstant)
             {
@@ -236,6 +248,8 @@ namespace Assets.Scripts.Meta
 
         public void AddWaypoints(List<Waypoint> iWaypoints)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.AddWaypoints({0})", iWaypoints.Count);
+
             if (!IsTweening)
             {
                 foreach (Waypoint curWaypoint in iWaypoints)
@@ -247,13 +261,15 @@ namespace Assets.Scripts.Meta
 
         public void StartTween(Boolean iRestart)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.StartTween({0})", iRestart);
+
             if (iRestart)
             {
                 cFltCurrentPathPercent = 0;
             }
             if (cWayCurrentWaypoint == null)
             {
-                Logman.Log("Test", BaseLogger.MessageType.Information, "Selecting next waypoint.");
+                Logman.Log(BaseLogger.MessageType.Information, "Selecting next waypoint.");
                 cBlnIsTweening = SelectNextWaypoint();
             }
             cDteCurrentStartedAt = DateTime.UtcNow;
@@ -261,17 +277,23 @@ namespace Assets.Scripts.Meta
 
         public void PauseTween()
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.PauseTween()");
+
             cBlnIsTweening = false;
         }
 
         public void StopTween()
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.StopTween()");
+
             cFltCurrentPathPercent = 0;
             cBlnIsTweening = false;
         }
 
         public Boolean UpdateTween()
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "DeckCard.UpdateTween()");
+
             if (cWayCurrentWaypoint == null)
             {
                 cBlnIsTweening = SelectNextWaypoint();
@@ -315,7 +337,7 @@ namespace Assets.Scripts.Meta
 
                 if (cFltCurrentPathPercent == 1.0f)                                     //We have finished tweening
                 {
-                    Logman.Log("Test", BaseLogger.MessageType.Information, "Previous movement set took '{0}' to complete.", DateTime.UtcNow - cDteCurrentStartedAt);
+                    Logman.Log(BaseLogger.MessageType.Verbose, "Previous movement set took '{0}' to complete.", DateTime.UtcNow - cDteCurrentStartedAt);
                     cBlnIsTweening = SelectNextWaypoint();
                 }
             }

@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Debugging;
 using Assets.Scripts.Extensions;
+using Assets.Scripts.Meta.Extensions;
 using Assets.Scripts.Utility;
 using Newtonsoft.Json;
 using System;
@@ -46,10 +47,7 @@ namespace Assets.Scripts.Meta
             {
                 if(cTexBackTexture == null)
                 {
-                    String pStrTextureFile = String.Format("{0}/Cards/{1}", Application.streamingAssetsPath, Info.BackImageFile);
-                    Logman.Log("Test", BaseLogger.MessageType.Information, "Loading texture file '{0}'.", pStrTextureFile);
-
-                    cTexBackTexture = TextureUtility.LoadPNG(pStrTextureFile);
+                    cTexBackTexture = IOUtility.LoadStreamingAssestsFileAsTexture2D(String.Format("Cards/{0}", Info.BackImageFile));
                 }
                 return (cTexBackTexture);
             }
@@ -61,6 +59,8 @@ namespace Assets.Scripts.Meta
 
         public Deck()
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.Constructor()");
+
             cRndRandom = new System.Random(Environment.TickCount);
             Stack = new List<DeckCard>();
         }
@@ -72,17 +72,25 @@ namespace Assets.Scripts.Meta
         public static Deck LoadFromAssets(CardManager iManager,
             String iName)
         {
-            Logman.Log("Test", BaseLogger.MessageType.Information, "Loading deck file '{0}'.", iName);
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.LoadFromAssets({0},'{1}').", iManager.GetHashCode(), iName);
+            Logman.Log(BaseLogger.MessageType.Information, "Loading deck file '{0}'.", iName);
 
             String pStrConfigJSON = IOUtility.LoadStreamingAssestsFileAsString(String.Format("Cards/{0}.deck", iName));
+
+            Logman.Log(BaseLogger.MessageType.Information, "Parsing deck file data.");
+            File.WriteAllText(IOUtility.GetDataPath() + "loadeddeck.json", pStrConfigJSON);
             Deck pDekDeck = JsonConvert.DeserializeObject<Deck>(pStrConfigJSON);
+            Logman.Log(BaseLogger.MessageType.Success, "Successfully parsed deck file data.");
+
             pDekDeck.Initialise(iManager);
             return (pDekDeck);
         }
 
         public void Initialise(CardManager iManager)
         {
-            if(!cBlnInitialised)
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.Initialise({0}).", iManager.GetHashCode());
+
+            if (!cBlnInitialised)
             {
                 Manager = iManager;
                 foreach (DeckCard curCard in Cards)
@@ -97,6 +105,8 @@ namespace Assets.Scripts.Meta
 
         public void ShuffleStack(Int32 iCount = 500)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.ShuffleStack({0}).", iCount);
+
             List<DeckCard> pLisStack = Stack.ToList();
             for(Int32 curShuffle = 0; curShuffle < iCount; curShuffle++)
             {
@@ -113,6 +123,8 @@ namespace Assets.Scripts.Meta
             Vector2 iPosition,
             DeckCard.CardFacing iFacing = DeckCard.CardFacing.Down)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.CreateStack({0}, {1}, {2}).", iCardPrefab.name, iPosition.ToString(), iFacing);
+
             Vector3 pVecCurPosition = new Vector3(iPosition.x, 0, iPosition.y);
             for (Int32 curCard = 0; curCard < Stack.Count; curCard++)
             {
@@ -126,6 +138,8 @@ namespace Assets.Scripts.Meta
             DeckCard.CardFacing iFacing = DeckCard.CardFacing.Down,
             params DeckCardTag[] iTags)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.CreateCard({0}, {1}, {2}, {3}).", iCardPrefab.name, iPosition.ToString(), iFacing, iTags.ToTagString());
+
             List<DeckCard> pLisCards = GetCards(iTags);
             pLisCards[0].Create(iCardPrefab, iPosition, iFacing);
             CardsByGameObject.Add(pLisCards[0].GameObjectRef, pLisCards[0]);
@@ -136,12 +150,16 @@ namespace Assets.Scripts.Meta
             Vector3 iPosition,
             DeckCard.CardFacing iFacing = DeckCard.CardFacing.Down)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.CreateCard({0}, {1}, {2}).", iCardPrefab.name, iPosition.ToString(), iFacing);
+
             iCard.Create(iCardPrefab, iPosition, iFacing);
             CardsByGameObject.Add(iCard.GameObjectRef, iCard);
         }
 
         public List<DeckCard> GetCards(params DeckCardTag[] iTags)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "Deck.GetCards({0}).", iTags.ToTagString());
+
             List<DeckCard> pLisCards = new List<DeckCard>();
             foreach(DeckCard curCard in Cards)
             {

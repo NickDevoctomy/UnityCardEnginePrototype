@@ -16,7 +16,9 @@ namespace Assets.Scripts.Debugging
             Warning = 2,
             Error = 4,
             Exception = 8,
-            Verbose = 16
+            Success = 16,
+            Fail = 32,
+            Verbose = 64
         }
 
         #endregion

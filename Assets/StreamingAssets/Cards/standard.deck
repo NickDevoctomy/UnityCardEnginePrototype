@@ -2,11 +2,11 @@
 	"Info":{
 		"Name": "Standard",
 		"Description": "A standard 52 card deck.",
-		"BackImageFile": "Images\\back.png",
+		"BackImageFile": "Images/back.png",
 	},
 	"Cards":[
 		{
-			"FrontImageFile": "Images\\ace_of_clubs.png",
+			"FrontImageFile": "Images/ace_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\2_of_clubs.png",
+			"FrontImageFile": "Images/2_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -32,7 +32,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\3_of_clubs.png",
+			"FrontImageFile": "Images/3_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -45,7 +45,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\4_of_clubs.png",
+			"FrontImageFile": "Images/4_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -58,7 +58,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\5_of_clubs.png",
+			"FrontImageFile": "Images/5_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -71,7 +71,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\6_of_clubs.png",
+			"FrontImageFile": "Images/6_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -84,7 +84,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\7_of_clubs.png",
+			"FrontImageFile": "Images/7_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -97,7 +97,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\8_of_clubs.png",
+			"FrontImageFile": "Images/8_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -110,7 +110,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\9_of_clubs.png",
+			"FrontImageFile": "Images/9_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -123,7 +123,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\10_of_clubs.png",
+			"FrontImageFile": "Images/10_of_clubs.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -136,7 +136,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\jack_of_clubs2.png",
+			"FrontImageFile": "Images/jack_of_clubs2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -149,7 +149,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\queen_of_clubs2.png",
+			"FrontImageFile": "Images/queen_of_clubs2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -162,7 +162,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\king_of_clubs2.png",
+			"FrontImageFile": "Images/king_of_clubs2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -175,7 +175,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\ace_of_diamonds.png",
+			"FrontImageFile": "Images/ace_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -188,7 +188,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\2_of_diamonds.png",
+			"FrontImageFile": "Images/2_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -201,7 +201,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\3_of_diamonds.png",
+			"FrontImageFile": "Images/3_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -214,7 +214,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\4_of_diamonds.png",
+			"FrontImageFile": "Images/4_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -227,7 +227,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\5_of_diamonds.png",
+			"FrontImageFile": "Images/5_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -240,7 +240,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\6_of_diamonds.png",
+			"FrontImageFile": "Images/6_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -253,7 +253,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\7_of_diamonds.png",
+			"FrontImageFile": "Images/7_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -266,7 +266,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\8_of_diamonds.png",
+			"FrontImageFile": "Images/8_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -279,7 +279,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\9_of_diamonds.png",
+			"FrontImageFile": "Images/9_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -292,7 +292,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\10_of_diamonds.png",
+			"FrontImageFile": "Images/10_of_diamonds.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -305,7 +305,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\jack_of_diamonds2.png",
+			"FrontImageFile": "Images/jack_of_diamonds2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -318,7 +318,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\queen_of_diamonds2.png",
+			"FrontImageFile": "Images/queen_of_diamonds2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -331,7 +331,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\king_of_diamonds2.png",
+			"FrontImageFile": "Images/king_of_diamonds2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -344,7 +344,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\ace_of_spades.png",
+			"FrontImageFile": "Images/ace_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -357,7 +357,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\2_of_spades.png",
+			"FrontImageFile": "Images/2_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -370,7 +370,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\3_of_spades.png",
+			"FrontImageFile": "Images/3_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -383,7 +383,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\4_of_spades.png",
+			"FrontImageFile": "Images/4_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -396,7 +396,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\5_of_spades.png",
+			"FrontImageFile": "Images/5_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -409,7 +409,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\6_of_spades.png",
+			"FrontImageFile": "Images/6_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -422,7 +422,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\7_of_spades.png",
+			"FrontImageFile": "Images/7_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -435,7 +435,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\8_of_spades.png",
+			"FrontImageFile": "Images/8_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -448,7 +448,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\9_of_spades.png",
+			"FrontImageFile": "Images/9_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -461,7 +461,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\10_of_spades.png",
+			"FrontImageFile": "Images/10_of_spades.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -474,7 +474,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\jack_of_spades2.png",
+			"FrontImageFile": "Images/jack_of_spades2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -487,7 +487,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\queen_of_spades2.png",
+			"FrontImageFile": "Images/queen_of_spades2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -500,7 +500,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\king_of_spades2.png",
+			"FrontImageFile": "Images/king_of_spades2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -513,7 +513,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\ace_of_hearts.png",
+			"FrontImageFile": "Images/ace_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -526,7 +526,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\2_of_hearts.png",
+			"FrontImageFile": "Images/2_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -539,7 +539,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\3_of_hearts.png",
+			"FrontImageFile": "Images/3_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -552,7 +552,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\4_of_hearts.png",
+			"FrontImageFile": "Images/4_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -565,7 +565,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\5_of_hearts.png",
+			"FrontImageFile": "Images/5_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -578,7 +578,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\6_of_hearts.png",
+			"FrontImageFile": "Images/6_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -591,7 +591,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\7_of_hearts.png",
+			"FrontImageFile": "Images/7_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -604,7 +604,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\8_of_hearts.png",
+			"FrontImageFile": "Images/8_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -617,7 +617,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\9_of_hearts.png",
+			"FrontImageFile": "Images/9_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -630,7 +630,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\10_of_hearts.png",
+			"FrontImageFile": "Images/10_of_hearts.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -643,7 +643,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\jack_of_hearts2.png",
+			"FrontImageFile": "Images/jack_of_hearts2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -656,7 +656,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\queen_of_hearts2.png",
+			"FrontImageFile": "Images/queen_of_hearts2.png",
 			"Tags":[
 				{
 					"Name": "Suit",
@@ -669,7 +669,7 @@
 			]
 		},
 		{
-			"FrontImageFile": "Images\\king_of_hearts2.png",
+			"FrontImageFile": "Images/king_of_hearts2.png",
 			"Tags":[
 				{
 					"Name": "Suit",

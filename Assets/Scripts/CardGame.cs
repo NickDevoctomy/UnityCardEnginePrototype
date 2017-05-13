@@ -29,18 +29,31 @@ public class CardGame : MonoBehaviour
 
     void Start ()
     {
-        Logman.Initialise(IOUtility.GetDataPath());
-        Dictionary<String, String> pDicParams = new Dictionary<String, String>();
-        pDicParams.Add("MessageTypes", "Information");
-        pDicParams.Add("NewLine", GetPlatformNewLineString());
-        Logman.CreateLog<FileLogger>("Test", pDicParams);
+        //Logman.Initialise(IOUtility.GetDataPath(),
+        //    "UnityCardEnginePrototype");
+        //Dictionary<String, String> pDicParams = new Dictionary<String, String>();
+        //pDicParams.Add("MessageTypes", String.Join(",",Enum.GetNames(typeof(BaseLogger.MessageType))));
+        //pDicParams.Add("NewLine", PlatformUtility.GetPlatformNewLineString());
+        //Logman.CreateLog<FileLogger>("UnityCardEnginePrototype", pDicParams);
 
         EventsHandler.Current.StackPointClicked += Current_StackPointClicked;
         EventsHandler.Current.SpreadCardClicked += Current_SpreadCardClicked;
 
-        cCMrManager = new CardManager(CardPrefab);
-        Game pGamGame = cCMrManager.LoadGame(Game);
-        pGamGame.Setup();
+        try
+        {
+            Logman.Log(BaseLogger.MessageType.Information, "Loading game");
+            cCMrManager = new CardManager(CardPrefab);
+            Game pGamGame = cCMrManager.LoadGame(Game);
+            Logman.Log(BaseLogger.MessageType.Success, "Successfully loaded game.");
+
+            Logman.Log(BaseLogger.MessageType.Information, "Setting up game.");
+            pGamGame.Setup();
+            Logman.Log(BaseLogger.MessageType.Success, "Successfully setup game.");
+        }
+        catch(Exception ex)
+        {
+            Logman.LogException(ex);
+        }
     }
 
     void Update()
@@ -51,26 +64,6 @@ public class CardGame : MonoBehaviour
     #endregion
 
     #region private methods
-
-    private String GetPlatformNewLineString()
-    {
-        switch(Application.platform)
-        {
-            case RuntimePlatform.Android:
-                {
-                    return ("\n");
-                }
-            case RuntimePlatform.WindowsEditor:
-            case RuntimePlatform.WindowsPlayer:
-                {
-                    return ("\r\n");
-                }
-            default:
-                {
-                    throw new PlatformNotSupportedException();
-                }
-        }
-    }
 
     private void SelectCard(DeckCard iCard)
     {

@@ -11,12 +11,11 @@ namespace Assets.Scripts.Debugging
     public class Logman
     {
 
-
-
         #region private objects
 
         private static Logman cLMnCurrent;
         private String cStrLogRoot = String.Empty;
+        private String cStrDefaultLogName = String.Empty;
         private Dictionary<String, BaseLogger> cDicLogs;
 
         #endregion
@@ -39,6 +38,14 @@ namespace Assets.Scripts.Debugging
             }
         }
 
+        public String DefaultLogName
+        {
+            get
+            {
+                return (cStrDefaultLogName);
+            }
+        }
+
         public Dictionary<String, BaseLogger> Loggers
         {
             get
@@ -51,12 +58,14 @@ namespace Assets.Scripts.Debugging
 
         #region constructor / destructor
 
-        private Logman(String iLogRoot)
+        private Logman(String iLogRoot,
+            String iDefaultLogName)
         {
             UnityEngine.Debug.Log(String.Format("Initialising Logman with root of '{0}'.", iLogRoot));
             cStrLogRoot = iLogRoot;
             if (!cStrLogRoot.EndsWith("/")) cStrLogRoot += "/";
             Directory.CreateDirectory(cStrLogRoot);
+            cStrDefaultLogName = iDefaultLogName;
             cDicLogs = new Dictionary<String, BaseLogger>();
         }
 
@@ -64,9 +73,11 @@ namespace Assets.Scripts.Debugging
 
         #region public methods
 
-        public static void Initialise(String iLogRoot)
+        public static void Initialise(String iLogRoot,
+            String iDefaultLogName)
         {
-            cLMnCurrent = new Logman(iLogRoot);
+            cLMnCurrent = new Logman(iLogRoot,
+                iDefaultLogName);
         }
 
         public static void CreateLog<LoggerType>(String iName,
@@ -107,15 +118,29 @@ namespace Assets.Scripts.Debugging
                     Object[] pObjParams = { Current, iName, iProperties };
                     BaseLogger pBLrLogger = (BaseLogger)pMIoCreate.Invoke(null, pObjParams);
                     pBLrLogger.Log(BaseLogger.MessageType.Information, 
-                        "Started logging '{0}' using logger type of '{1}'.", 
+                        "Started logging '{0}' using logger type of '{1}' at location '{2}'.", 
                         iName, 
-                        typeof(LoggerType).Name);
+                        typeof(LoggerType).Name,
+                        ((FileLogger)pBLrLogger).FullPath);         //!!!TODO: this shouldn't assume logger type
                     Current.cDicLogs.Add(iName, pBLrLogger);
                 }
                 else
                 {
                     throw new Exception(String.Format("Logger of type '{0}' does not have a public static method named 'Create'.", pTypLogger.Name));
                 }
+            }
+        }
+
+        public static void Log(BaseLogger.MessageType iMessageType,
+            String iMessageFormat,
+            params Object[] iParams)
+        {
+            if (Current != null)
+            {
+                Log(Current.DefaultLogName,
+                    iMessageType,
+                    iMessageFormat,
+                    iParams);
             }
         }
 
@@ -136,6 +161,14 @@ namespace Assets.Scripts.Debugging
                 {
                     //Do nothing at the moment
                 }
+            }
+        }
+
+        public static void LogException(Exception iException)
+        {
+            if (Current != null)
+            {
+                LogException(Current.DefaultLogName, iException);
             }
         }
 

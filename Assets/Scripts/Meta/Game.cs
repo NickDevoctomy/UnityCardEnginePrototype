@@ -46,10 +46,14 @@ namespace Assets.Scripts.Meta
         public static Game LoadFromAssets(CardManager iManager,
             String iName)
         {
-            Logman.Log("Test", BaseLogger.MessageType.Information, "Loading game file '{0}'.", iName);
+            Logman.Log(BaseLogger.MessageType.Verbose, "Game.LoadFromAssets({0}, {1}).", iManager.GetHashCode(), iName);
+            Logman.Log(BaseLogger.MessageType.Information, "Loading game file '{0}'.", iName);
 
             String pStrConfigJSON = IOUtility.LoadStreamingAssestsFileAsString(String.Format("Cards/{0}.game", iName));
+
+            Logman.Log(BaseLogger.MessageType.Information, "Parsing game file data.");
             Game pGamGame = JsonConvert.DeserializeObject<Game>(pStrConfigJSON);
+            Logman.Log(BaseLogger.MessageType.Success, "Successfully parsed game file data.");
 
             //Let's parse the rules manually as it's going to be quite complex
             JObject pJOtJSON = JObject.Parse(pStrConfigJSON);

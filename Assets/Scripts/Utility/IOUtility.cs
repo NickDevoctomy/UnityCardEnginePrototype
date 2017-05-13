@@ -16,18 +16,23 @@ namespace Assets.Scripts.Utility
 
         public static String LoadURLAsString(String iPath)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "IOUtility.LoadURLAsString('{0}')", iPath);
+
             String pStrText = String.Empty;
             WWW www = new WWW(iPath);
             WaitForSeconds w;
             while (!www.isDone)
                 w = new WaitForSeconds(0.1f);
-            Logman.Log("Test", BaseLogger.MessageType.Information, "Loaded streaming assets file data '{0}'.", pStrText);
             pStrText = www.text;
+            Logman.Log(BaseLogger.MessageType.Information, "Loaded URL data.");
+            Logman.Log(BaseLogger.MessageType.Verbose, "URL data =\r\n'{0}'.", pStrText);
             return (pStrText);
         }
 
         public static String LoadStreamingAssestsFileAsString(String iPath)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "IOUtility.LoadStreamingAssestsFileAsString('{0}')", iPath);
+
             String pStrFilePath = Path.Combine(Application.streamingAssetsPath, iPath);
             String pStrText = String.Empty;
             if (pStrFilePath.Contains("://"))
@@ -36,8 +41,9 @@ namespace Assets.Scripts.Utility
                 WaitForSeconds w;
                 while (!www.isDone)
                     w = new WaitForSeconds(0.1f);
-                Logman.Log("Test", BaseLogger.MessageType.Information, "Loaded streaming assets file data '{0}'.", pStrText);
                 pStrText = www.text;
+                Logman.Log(BaseLogger.MessageType.Information, "Loaded streaming assets file data.");
+                Logman.Log(BaseLogger.MessageType.Verbose, "File data =\r\n'{0}'.", pStrText);
             }
             else
             {
@@ -48,6 +54,8 @@ namespace Assets.Scripts.Utility
 
         public static Texture2D LoadStreamingAssestsFileAsTexture2D(String iPath)
         {
+            Logman.Log(BaseLogger.MessageType.Verbose, "IOUtility.LoadStreamingAssestsFileAsTexture2D('{0}')", iPath);
+
             String pStrFilePath = Path.Combine(Application.streamingAssetsPath, iPath);
             Texture2D pTexTexture = null;
             if (pStrFilePath.Contains("://"))
@@ -57,6 +65,7 @@ namespace Assets.Scripts.Utility
                 while (!www.isDone)
                     w = new WaitForSeconds(0.1f);
                 pTexTexture = www.texture;
+                Logman.Log(BaseLogger.MessageType.Information, "Loaded streaming assets file data as texture.");
             }
             else
             {
@@ -102,6 +111,7 @@ namespace Assets.Scripts.Utility
 #else
             path = Application.persistentDataPath;
 #endif
+            if (!path.EndsWith(PlatformUtility.GetPlatformPathSeparator())) path += PlatformUtility.GetPlatformPathSeparator();
             return (path);
         }
 
