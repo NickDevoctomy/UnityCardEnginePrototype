@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Utility;
+﻿using Assets.Scripts.Debugging;
+using Assets.Scripts.Utility;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -45,7 +46,7 @@ namespace Assets.Scripts.Meta
         public static Game LoadFromAssets(CardManager iManager,
             String iName)
         {
-            Debug.Log(String.Format("Loading game file '{0}'.", iName));
+            Logman.Log("Test", BaseLogger.MessageType.Information, "Loading game file '{0}'.", iName);
 
             String pStrConfigJSON = IOUtility.LoadStreamingAssestsFileAsString(String.Format("Cards/{0}.game", iName));
             Game pGamGame = JsonConvert.DeserializeObject<Game>(pStrConfigJSON);

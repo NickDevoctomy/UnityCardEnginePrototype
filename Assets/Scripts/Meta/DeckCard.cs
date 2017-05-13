@@ -1,4 +1,6 @@
-﻿using Assets.Scripts.Extensions;
+﻿using Assets.Scripts.Debugging;
+using Assets.Scripts.Extensions;
+using Assets.Scripts.Meta.Extensions;
 using Assets.Scripts.Utility;
 using Newtonsoft.Json;
 using System;
@@ -148,7 +150,7 @@ namespace Assets.Scripts.Meta
                 Waypoint pMStNext = cQueWaypoints.Dequeue();
                 cFltCurrentPathPercent = 0.0f;
                 cDteCurrentStartedAt = DateTime.UtcNow;
-                Debug.Log(String.Format("Got next movement set '{0}'.", pMStNext.Name));
+                Logman.Log("Test", BaseLogger.MessageType.Information, "Got next movement set '{0}'.", pMStNext.Name);
                 cWayCurrentWaypoint = pMStNext;
                 pVe3LastPosition = GameObjectRef.transform.position;
                 return (true);
@@ -195,7 +197,7 @@ namespace Assets.Scripts.Meta
                 GameObject pGOtFront = GameObjectRef.GetChildGameObject("Front");
                 GameObject pGOtBack = GameObjectRef.GetChildGameObject("Back");
 
-                Debug.Log(String.Format("Loading texture file '{0}'.", FrontImageFile));
+                Logman.Log("Test", BaseLogger.MessageType.Information, "Loading texture file '{0}'.", FrontImageFile);
 
                 Texture2D textureFront = IOUtility.LoadStreamingAssestsFileAsTexture2D(String.Format("Cards/{0}", FrontImageFile));
                 Renderer cardRenderer = pGOtFront.GetComponent<Renderer>();
@@ -251,7 +253,7 @@ namespace Assets.Scripts.Meta
             }
             if (cWayCurrentWaypoint == null)
             {
-                Debug.Log("Selecting next waypoint.");
+                Logman.Log("Test", BaseLogger.MessageType.Information, "Selecting next waypoint.");
                 cBlnIsTweening = SelectNextWaypoint();
             }
             cDteCurrentStartedAt = DateTime.UtcNow;
@@ -313,7 +315,7 @@ namespace Assets.Scripts.Meta
 
                 if (cFltCurrentPathPercent == 1.0f)                                     //We have finished tweening
                 {
-                    Debug.Log(String.Format("Previous movement set took '{0}' to complete.", DateTime.UtcNow - cDteCurrentStartedAt));
+                    Logman.Log("Test", BaseLogger.MessageType.Information, "Previous movement set took '{0}' to complete.", DateTime.UtcNow - cDteCurrentStartedAt);
                     cBlnIsTweening = SelectNextWaypoint();
                 }
             }

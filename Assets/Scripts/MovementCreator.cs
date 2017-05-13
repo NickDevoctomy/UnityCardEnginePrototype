@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Extensions;
 using Assets.Scripts.Meta;
+using Assets.Scripts.Meta.Extensions;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

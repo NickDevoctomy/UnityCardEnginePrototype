@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Scripts.Extensions
+namespace Assets.Scripts.Meta.Extensions
 {
 
     public static class DeckCardTagExtensions

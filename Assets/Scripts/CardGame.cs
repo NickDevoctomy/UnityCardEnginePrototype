@@ -1,8 +1,10 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Debugging;
 using Assets.Scripts.Meta;
 using Assets.Scripts.Utility;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -27,6 +29,12 @@ public class CardGame : MonoBehaviour
 
     void Start ()
     {
+        Logman.Initialise(IOUtility.GetDataPath());
+        Dictionary<String, String> pDicParams = new Dictionary<String, String>();
+        pDicParams.Add("MessageTypes", "Information");
+        pDicParams.Add("NewLine", GetPlatformNewLineString());
+        Logman.CreateLog<FileLogger>("Test", pDicParams);
+
         EventsHandler.Current.StackPointClicked += Current_StackPointClicked;
         EventsHandler.Current.SpreadCardClicked += Current_SpreadCardClicked;
 
@@ -43,6 +51,26 @@ public class CardGame : MonoBehaviour
     #endregion
 
     #region private methods
+
+    private String GetPlatformNewLineString()
+    {
+        switch(Application.platform)
+        {
+            case RuntimePlatform.Android:
+                {
+                    return ("\n");
+                }
+            case RuntimePlatform.WindowsEditor:
+            case RuntimePlatform.WindowsPlayer:
+                {
+                    return ("\r\n");
+                }
+            default:
+                {
+                    throw new PlatformNotSupportedException();
+                }
+        }
+    }
 
     private void SelectCard(DeckCard iCard)
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 
-namespace Assets.Scripts.Extensions
+namespace Assets.Scripts.Meta.Extensions
 {
 
     public static class CardFacingExtensions

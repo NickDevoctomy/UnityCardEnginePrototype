@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Extensions;
+﻿using Assets.Scripts.Debugging;
+using Assets.Scripts.Extensions;
 using Assets.Scripts.Utility;
 using Newtonsoft.Json;
 using System;
@@ -46,7 +47,7 @@ namespace Assets.Scripts.Meta
                 if(cTexBackTexture == null)
                 {
                     String pStrTextureFile = String.Format("{0}/Cards/{1}", Application.streamingAssetsPath, Info.BackImageFile);
-                    Debug.Log(String.Format("Loading texture file '{0}'.", pStrTextureFile));
+                    Logman.Log("Test", BaseLogger.MessageType.Information, "Loading texture file '{0}'.", pStrTextureFile);
 
                     cTexBackTexture = TextureUtility.LoadPNG(pStrTextureFile);
                 }
@@ -71,7 +72,7 @@ namespace Assets.Scripts.Meta
         public static Deck LoadFromAssets(CardManager iManager,
             String iName)
         {
-            Debug.Log(String.Format("Loading deck file '{0}'.", iName));
+            Logman.Log("Test", BaseLogger.MessageType.Information, "Loading deck file '{0}'.", iName);
 
             String pStrConfigJSON = IOUtility.LoadStreamingAssestsFileAsString(String.Format("Cards/{0}.deck", iName));
             Deck pDekDeck = JsonConvert.DeserializeObject<Deck>(pStrConfigJSON);
