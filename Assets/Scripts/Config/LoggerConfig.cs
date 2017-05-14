@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.Debugging;
+using Assets.Scripts.Utility;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -35,13 +36,24 @@ namespace Assets.Scripts.Config
 
         #endregion
 
+        #region private methods
+
+        private String ReplaceTokens(String iValue)
+        {
+            String pStrValue = iValue;
+            pStrValue = pStrValue.Replace("{PlatformNewLineString}", PlatformUtility.GetPlatformNewLineString());
+            return (pStrValue);
+        }
+
+        #endregion
+
         #region public methods
 
         public void Create()
         {
             Dictionary<String, String> pDicParams = new Dictionary<String, String>();
             pDicParams.Add("MessageTypes", MessageTypes );
-            pDicParams.Add("NewLine", NewLine);
+            pDicParams.Add("NewLine", ReplaceTokens(NewLine));
             pDicParams.Add("BaseLog", BaseLog.ToString());      //This causes massive performance issues when true
             Logman.CreateLog<FileLogger>(Name, pDicParams);
         }
