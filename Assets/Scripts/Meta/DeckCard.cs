@@ -43,7 +43,7 @@ namespace Assets.Scripts.Meta
         public String FrontImageFile { get; set; }
 
         [JsonIgnore]
-        public String BackImageFile { get; set; }
+        public String BackImageFile { get; private set; }
 
         [JsonProperty(Required = Required.Always)]
         public DeckCardTag[] Tags { get; set; }

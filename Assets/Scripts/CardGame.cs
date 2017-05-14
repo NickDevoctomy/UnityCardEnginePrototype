@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts;
+using Assets.Scripts.Config;
 using Assets.Scripts.Debugging;
 using Assets.Scripts.Meta;
 using Assets.Scripts.Utility;
@@ -29,14 +30,7 @@ public class CardGame : MonoBehaviour
 
     void Start ()
     {
-        //Need to load the logger from a configuration file
-        Logman.Initialise(IOUtility.GetDataPath(),
-            "UnityCardEnginePrototype");
-        Dictionary<String, String> pDicParams = new Dictionary<String, String>();
-        pDicParams.Add("MessageTypes", String.Join(",", Enum.GetNames(typeof(BaseLogger.MessageType))));
-        pDicParams.Add("NewLine", PlatformUtility.GetPlatformNewLineString());
-        pDicParams.Add("BaseLog", "false");                                                                 //This causes massive performance issues when true
-        Logman.CreateLog<FileLogger>("UnityCardEnginePrototype", pDicParams);
+        AppConfig.Current.Initialise();
 
         EventsHandler.Current.StackPointClicked += Current_StackPointClicked;
         EventsHandler.Current.SpreadCardClicked += Current_SpreadCardClicked;
