@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using UnityEngine;
 
 namespace Assets.Scripts.Utility
@@ -43,7 +40,7 @@ namespace Assets.Scripts.Utility
                 case RuntimePlatform.WindowsEditor:
                 case RuntimePlatform.WindowsPlayer:
                     {
-                        return ("\\");
+                        return ("/");  //Let's see if it works with forward slashes anyway
                     }
                 default:
                     {

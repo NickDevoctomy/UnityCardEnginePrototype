@@ -29,12 +29,14 @@ public class CardGame : MonoBehaviour
 
     void Start ()
     {
-        //Logman.Initialise(IOUtility.GetDataPath(),
-        //    "UnityCardEnginePrototype");
-        //Dictionary<String, String> pDicParams = new Dictionary<String, String>();
-        //pDicParams.Add("MessageTypes", String.Join(",",Enum.GetNames(typeof(BaseLogger.MessageType))));
-        //pDicParams.Add("NewLine", PlatformUtility.GetPlatformNewLineString());
-        //Logman.CreateLog<FileLogger>("UnityCardEnginePrototype", pDicParams);
+        //Need to load the logger from a configuration file
+        Logman.Initialise(IOUtility.GetDataPath(),
+            "UnityCardEnginePrototype");
+        Dictionary<String, String> pDicParams = new Dictionary<String, String>();
+        pDicParams.Add("MessageTypes", String.Join(",", Enum.GetNames(typeof(BaseLogger.MessageType))));
+        pDicParams.Add("NewLine", PlatformUtility.GetPlatformNewLineString());
+        pDicParams.Add("BaseLog", "false");                                                                 //This causes massive performance issues when true
+        Logman.CreateLog<FileLogger>("UnityCardEnginePrototype", pDicParams);
 
         EventsHandler.Current.StackPointClicked += Current_StackPointClicked;
         EventsHandler.Current.SpreadCardClicked += Current_SpreadCardClicked;

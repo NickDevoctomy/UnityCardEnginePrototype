@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assets.Scripts.IO;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,9 +13,12 @@ namespace Assets.Scripts.Debugging
 
         #region private objects
 
-        private static String[] cStrProperties = { "MessageTypes", "NewLine" };
+        private static String[] cStrProperties = { "MessageTypes", "NewLine", "BaseLog" };
         private Logman cLMnOwner;
         private String cStrNewLine = String.Empty;
+        private String cStrLastLogFile = String.Empty;
+        private FileStream cFSmOutput;
+        private Boolean cBlnBaseLog;
 
         #endregion
 
@@ -45,11 +49,38 @@ namespace Assets.Scripts.Debugging
             }
         }
 
+        public FileStream OutputStream
+        {
+            get
+            {
+                String pStrFullPath = FullPath;
+                if(cStrLastLogFile != pStrFullPath)
+                {
+                    cFSmOutput = new FileStream(pStrFullPath, 
+                        FileMode.Append, 
+                        FileAccess.Write, 
+                        FileShare.Read, 
+                        (Int32)FileSize.Convert(1, FileSize.UnitSize.Megabytes, FileSize.UnitSize.Bytes), 
+                        FileOptions.None);
+                    cStrLastLogFile = pStrFullPath;
+                }
+                return (cFSmOutput);
+            }
+        }
+
         public String NewLine
         {
             get
             {
                 return (cStrNewLine);
+            }
+        }
+
+        public Boolean BaseLog
+        {
+            get
+            {
+                return (cBlnBaseLog);
             }
         }
 
@@ -60,11 +91,13 @@ namespace Assets.Scripts.Debugging
         public FileLogger(Logman iOwner,
             String iName,
             MessageType iMessageTypes,
-            String iNewLine) :
+            String iNewLine,
+            Boolean iBaseLog) :
             base(iName, iMessageTypes)
         {
             cLMnOwner = iOwner;
             cStrNewLine = iNewLine;
+            cBlnBaseLog = iBaseLog;
         }
 
         #endregion
@@ -74,10 +107,15 @@ namespace Assets.Scripts.Debugging
         protected override void OnLog(MessageType iMessageType, 
             String iMessage)
         {
-            base.OnLog(iMessageType,
-                iMessage);
-            File.AppendAllText(FullPath, 
-                String.Format("{0}{1}", iMessage, NewLine));
+            if(BaseLog)
+            {
+                base.OnLog(iMessageType,
+                    iMessage);
+            }
+
+            String pStrOutput = String.Format("{0}{1}", iMessage, NewLine);
+            Byte[] pBytOutput = Encoding.UTF8.GetBytes(pStrOutput);
+            OutputStream.Write(pBytOutput, 0, pBytOutput.Length);
         }
 
         #endregion
@@ -90,10 +128,12 @@ namespace Assets.Scripts.Debugging
         {
             String pStrMessageTypes = iParams["MessageTypes"];
             String pStrNewLine = iParams["NewLine"];
+            Boolean pBlnBaseLog = Boolean.Parse(iParams["BaseLog"]);
             FileLogger pFLrLogger = new FileLogger(iOwner,
                 iName,
                 (MessageType)Enum.Parse(typeof(MessageType), pStrMessageTypes),
-                pStrNewLine);
+                pStrNewLine,
+                pBlnBaseLog);
             return (pFLrLogger);
         }
 
