@@ -18,7 +18,7 @@ namespace Assets.Scripts.Debugging
             Exception = 8,
             Success = 16,
             Fail = 32,
-            Verbose = 64
+            Verbose = 64            //This should be used on messages being written during a frame update as it will greatly impact performance
         }
 
         #endregion

@@ -26,6 +26,9 @@ namespace Assets.Scripts.Config
         [JsonProperty(Required = Required.Always)]
         public Boolean BaseLog { get; set; }
 
+        [JsonProperty(Required = Required.Always)]
+        public Int32 BufferSizeMB { get; set; }
+
         #endregion
 
         #region constructor / destructor
@@ -55,6 +58,7 @@ namespace Assets.Scripts.Config
             pDicParams.Add("MessageTypes", MessageTypes );
             pDicParams.Add("NewLine", ReplaceTokens(NewLine));
             pDicParams.Add("BaseLog", BaseLog.ToString());      //This causes massive performance issues when true
+            pDicParams.Add("BufferSizeMB", BufferSizeMB.ToString());
             Logman.CreateLog<FileLogger>(Name, pDicParams);
         }
 

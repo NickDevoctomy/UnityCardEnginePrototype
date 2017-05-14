@@ -17,6 +17,7 @@ namespace Assets.Scripts.Debugging
         private Logman cLMnOwner;
         private String cStrNewLine = String.Empty;
         private String cStrLastLogFile = String.Empty;
+        private Int32 cIntBufferSizeMB;
         private FileStream cFSmOutput;
         private Boolean cBlnBaseLog;
 
@@ -60,7 +61,7 @@ namespace Assets.Scripts.Debugging
                         FileMode.Append, 
                         FileAccess.Write, 
                         FileShare.Read, 
-                        (Int32)FileSize.Convert(1, FileSize.UnitSize.Megabytes, FileSize.UnitSize.Bytes), 
+                        (Int32)FileSize.Convert(BufferSizeMB, FileSize.UnitSize.Megabytes, FileSize.UnitSize.Bytes), 
                         FileOptions.None);
                     cStrLastLogFile = pStrFullPath;
                 }
@@ -84,6 +85,14 @@ namespace Assets.Scripts.Debugging
             }
         }
 
+        public Int32 BufferSizeMB
+        {
+            get
+            {
+                return (cIntBufferSizeMB);
+            }
+        }
+
         #endregion
 
         #region constructor / destructor
@@ -92,12 +101,14 @@ namespace Assets.Scripts.Debugging
             String iName,
             MessageType iMessageTypes,
             String iNewLine,
-            Boolean iBaseLog) :
+            Boolean iBaseLog,
+            Int32 iBufferSizeMB) :
             base(iName, iMessageTypes)
         {
             cLMnOwner = iOwner;
             cStrNewLine = iNewLine;
             cBlnBaseLog = iBaseLog;
+            cIntBufferSizeMB = iBufferSizeMB;
         }
 
         #endregion
@@ -129,11 +140,13 @@ namespace Assets.Scripts.Debugging
             String pStrMessageTypes = iParams["MessageTypes"];
             String pStrNewLine = iParams["NewLine"];
             Boolean pBlnBaseLog = Boolean.Parse(iParams["BaseLog"]);
+            Int32 pIntBufferSizeMB = Int32.Parse(iParams["BufferSizeMB"]);
             FileLogger pFLrLogger = new FileLogger(iOwner,
                 iName,
                 (MessageType)Enum.Parse(typeof(MessageType), pStrMessageTypes),
                 pStrNewLine,
-                pBlnBaseLog);
+                pBlnBaseLog,
+                pIntBufferSizeMB);
             return (pFLrLogger);
         }
 
