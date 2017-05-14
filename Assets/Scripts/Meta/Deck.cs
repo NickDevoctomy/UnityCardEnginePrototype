@@ -78,7 +78,6 @@ namespace Assets.Scripts.Meta
             String pStrConfigJSON = IOUtility.LoadStreamingAssestsFileAsString(String.Format("Cards/{0}.deck", iName));
 
             Logman.Log(BaseLogger.MessageType.Information, "Parsing deck file data.");
-            File.WriteAllText(IOUtility.GetDataPath() + "loadeddeck.json", pStrConfigJSON);
             Deck pDekDeck = JsonConvert.DeserializeObject<Deck>(pStrConfigJSON);
             Logman.Log(BaseLogger.MessageType.Success, "Successfully parsed deck file data.");
 
