@@ -39,7 +39,7 @@ public class CardGame : MonoBehaviour
         {
             Game pGamGame = null;
 
-            using (Logman.Time("Loading game"))
+            using (var log = Logman.Time("Loading game"))
             {
                 cCMrManager = new CardManager(CardPrefab);
                 pGamGame = cCMrManager.LoadGame(Game);

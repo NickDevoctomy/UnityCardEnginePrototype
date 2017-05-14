@@ -44,6 +44,8 @@ namespace Assets.Scripts.Debugging
             }
         }
 
+        public Boolean? Success { get; set; }
+
         #endregion
 
         #region constructor / destructor
@@ -95,7 +97,14 @@ namespace Assets.Scripts.Debugging
             if (cBlnDisposed) return;
             if (disposing)
             {
-                Logger.Log(BaseLogger.MessageType.Information, "Operation '{0}' finished in '{1}'.", Operation, Elapsed);
+                if(Success.HasValue)
+                {
+                    Logger.Log(Success.Value ? BaseLogger.MessageType.Success : BaseLogger.MessageType.Fail, "Operation '{0}' finished in '{1}'.", Operation, Elapsed);
+                }
+                else
+                {
+                    Logger.Log(BaseLogger.MessageType.Information, "Operation '{0}' finished in '{1}'.", Operation, Elapsed);
+                }
             }
             cBlnDisposed = true;
         }
