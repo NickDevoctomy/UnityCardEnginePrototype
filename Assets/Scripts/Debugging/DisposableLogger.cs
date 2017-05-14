@@ -14,6 +14,7 @@ namespace Assets.Scripts.Debugging
         private BaseLogger cBLrLogger;
         private Boolean cBlnDisposed;
         private DateTime cDTeStartedAt;
+        private BaseLogger.MessageType cMTeMessageType;
         private String cStrOperation = String.Empty;
 
         #endregion
@@ -44,6 +45,14 @@ namespace Assets.Scripts.Debugging
             }
         }
 
+        public BaseLogger.MessageType MessageType
+        {
+            get
+            {
+                return (cMTeMessageType);
+            }
+        }
+
         public Boolean? Success { get; set; }
 
         #endregion
@@ -51,12 +60,14 @@ namespace Assets.Scripts.Debugging
         #region constructor / destructor
 
         public DisposableLogger(BaseLogger iLogger,
+            BaseLogger.MessageType iMessageType,
             String iOperation)
         {
             cDTeStartedAt = DateTime.UtcNow;
             cBLrLogger = iLogger;
             cStrOperation = iOperation;
-            Logger.Log(BaseLogger.MessageType.Information, "Operation '{0}' started at '{1}'.", Operation, Elapsed);
+            cMTeMessageType = iMessageType;
+            Logger.Log(MessageType, "Operation '{0}' started at '{1}'.", Operation, Elapsed);
         }
 
         ~DisposableLogger()
@@ -69,12 +80,13 @@ namespace Assets.Scripts.Debugging
         #region public methods
 
         public static DisposableLogger Create(String iName,
+            BaseLogger.MessageType iMessageType,
             String iOperation)
         {
             if(Logman.Current.Loggers.ContainsKey(iName))
             {
                 BaseLogger pBLogger = Logman.Current.Loggers[iName];
-                return (new DisposableLogger(pBLogger, iOperation));
+                return (new DisposableLogger(pBLogger, iMessageType, iOperation));
             }
             else
             {
@@ -99,7 +111,7 @@ namespace Assets.Scripts.Debugging
             {
                 if(Success.HasValue)
                 {
-                    Logger.Log(Success.Value ? BaseLogger.MessageType.Success : BaseLogger.MessageType.Fail, "Operation '{0}' finished in '{1}'.", Operation, Elapsed);
+                    Logger.Log(MessageType | (Success.Value ? BaseLogger.MessageType.Success : BaseLogger.MessageType.Fail), "Operation '{0}' finished in '{1}'.", Operation, Elapsed);
                 }
                 else
                 {

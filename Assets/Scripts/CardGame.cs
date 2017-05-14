@@ -39,13 +39,13 @@ public class CardGame : MonoBehaviour
         {
             Game pGamGame = null;
 
-            using (var log = Logman.Time("Loading game"))
+            using (var log = Logman.Time("Loading game", BaseLogger.MessageType.Information))
             {
                 cCMrManager = new CardManager(CardPrefab);
                 pGamGame = cCMrManager.LoadGame(Game);
             }
 
-            using (Logman.Time("Setting up game."))
+            using (Logman.Time("Setting up game.", BaseLogger.MessageType.Information))
             {
                 pGamGame.Setup();
             }
