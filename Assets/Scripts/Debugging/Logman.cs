@@ -188,6 +188,17 @@ namespace Assets.Scripts.Debugging
             }
         }
 
+        public static DisposableLogger Time(String iOperation)
+        {
+            return (DisposableLogger.Create(Current.DefaultLogName, iOperation));
+        }
+
+        public static DisposableLogger Time(String iName,
+            String iOperation)
+        {
+            return (DisposableLogger.Create(iName, iOperation));
+        }
+
         #endregion
 
     }

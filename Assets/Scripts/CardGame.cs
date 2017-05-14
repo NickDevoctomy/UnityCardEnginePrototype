@@ -37,14 +37,18 @@ public class CardGame : MonoBehaviour
 
         try
         {
-            Logman.Log(BaseLogger.MessageType.Information, "Loading game");
-            cCMrManager = new CardManager(CardPrefab);
-            Game pGamGame = cCMrManager.LoadGame(Game);
-            Logman.Log(BaseLogger.MessageType.Success, "Successfully loaded game.");
+            Game pGamGame = null;
 
-            Logman.Log(BaseLogger.MessageType.Information, "Setting up game.");
-            pGamGame.Setup();
-            Logman.Log(BaseLogger.MessageType.Success, "Successfully setup game.");
+            using (Logman.Time("Loading game"))
+            {
+                cCMrManager = new CardManager(CardPrefab);
+                pGamGame = cCMrManager.LoadGame(Game);
+            }
+
+            using (Logman.Time("Setting up game."))
+            {
+                pGamGame.Setup();
+            }
         }
         catch(Exception ex)
         {
