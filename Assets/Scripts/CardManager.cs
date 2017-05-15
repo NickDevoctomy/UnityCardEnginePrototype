@@ -226,6 +226,25 @@ public class CardManager
         }
     }
 
+    public float GetHighestCardPos()
+    {
+        float pFltHighest = 0.0f;
+        foreach(Deck curDeck in Decks.Values)
+        {
+            foreach(DeckCard curCard in curDeck.Cards)
+            {
+                if(curCard.GameObjectRef != null)
+                {
+                    if (pFltHighest < curCard.GameObjectRef.transform.position.y)
+                    {
+                        pFltHighest = curCard.GameObjectRef.transform.position.y;
+                    }
+                }
+            }
+        }
+        return (pFltHighest);
+    }
+
     #endregion
 
 }

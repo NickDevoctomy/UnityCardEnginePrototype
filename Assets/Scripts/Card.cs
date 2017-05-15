@@ -11,7 +11,7 @@ public class Card : MonoBehaviour
     private ClickHandler cCHrClickHandler;
     private Vector3 cVe3StartDragPos;
     private Boolean cBlnDragging;
-    private float cFltDistance;
+    private float cFltHighestCard = 0.0f;
 
     #endregion
 
@@ -26,27 +26,30 @@ public class Card : MonoBehaviour
 
     void Update()
     {
-        DeckCard pDCdCard = Deck.CardsByGameObject[this.gameObject];
-
         if (cBlnDragging)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            Vector3 rayPoint = ray.GetPoint(cFltDistance);
-            transform.position = rayPoint;
+            RaycastHit pRHtHit;
+            Ray pRayRayToTable = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(pRayRayToTable, out pRHtHit))
+            {
+                //need to get the y coordinate of the highest card
+                transform.position = new Vector3( pRHtHit.point.x, cFltHighestCard, pRHtHit.point.z);
+            }
         }
         else
         {
+            DeckCard pDCdCard = Deck.CardsByGameObject[this.gameObject];
             pDCdCard.UpdateTween();
         }
-
 
         cCHrClickHandler.Update();
     }
 
     void OnMouseDown()
     {
+        DeckCard pDCdCard = Deck.CardsByGameObject[this.gameObject];
         cVe3StartDragPos = this.gameObject.transform.position;
-        cFltDistance = Vector3.Distance(transform.position, Camera.main.transform.position) - 3.0f;
+        cFltHighestCard = pDCdCard.Deck.Manager.GetHighestCardPos() + 0.03f;            //This y co-ordinate will prevent the card from colliding with any other cards
         cCHrClickHandler.OnMouseDown();
         cBlnDragging = true;
     }
